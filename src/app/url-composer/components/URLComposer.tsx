@@ -4,37 +4,18 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { isValidURL } from "@/utils/url-composser/is-valid-url";
+import { urlTreeGenerator } from "@/utils/url-composser/url-tree-generator";
 
 type SearchParamsKeyValue = Array<{ key: string; value: string }>;
 
-const urlMapper = (urlInput: string) => {
-  const url = new URL(urlInput);
-  const searchParams = url.searchParams;
-  const searchParamsKV: SearchParamsKeyValue = [];
-
-  for (const [key, value] of searchParams.entries()) {
-    if (key && value) {
-      searchParamsKV.push({ key, value });
-    }
-  }
-
-  return searchParamsKV;
-};
 
 export const URLComposer = () => {
   const [urlParams, setUrlParams] = useState<SearchParamsKeyValue>([]);
 
   const handleChangeTextUrl = (urlInput: string) => {
-    if (!isValidURL(urlInput)) {
-      return;
-    }
-
-    const mappedUrl = urlMapper(urlInput);
-    setUrlParams(mappedUrl);
+    const mappedUrl = urlTreeGenerator({ urlInput, urlKeys: ['url','link'] });
+    console.log(mappedUrl);
   };
-
-  console.log(urlParams);
 
   return (
     <div className="max-w-xl min-w-3xl rounded-xl bg-white p-6 shadow-sm outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
@@ -49,12 +30,12 @@ export const URLComposer = () => {
           onChange={(e) => handleChangeTextUrl(e.target.value)}
         />
       </div>
-      {urlParams.map((item) => (
+      {/* {urlParams.map((item) => (
         <div className="mt-3" key={item.key}>
           <Label className="mb-2">{item.key}</Label>
           <Input readOnly type="text" value={item.value}></Input>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };
