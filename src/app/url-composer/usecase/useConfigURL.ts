@@ -1,9 +1,9 @@
 import { useState } from "react"
 
-type ConfigType = 'encode' | 'decode' | 'compose';
+type ConfigType = 'encode' | 'decode' | 'compose' | 'decompose';
 
 export const useConfigURL = () => {
-  const [config, setConfig] = useState<ConfigType>('compose');
+  const [config, setConfig] = useState<ConfigType>('decompose');
 
   const handleChangeConfg = (value: ConfigType) => {
     setConfig(value);
