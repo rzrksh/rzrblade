@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,6 +25,7 @@ import { useConfigURL } from "../usecase/useConfigURL";
 
 export const URLComposerConfig = () => {
   const { config, handleChangeConfg } = useConfigURL();
+  const [autoDetectURL, setAutoDetectURL] = useState(true);
 
   return (
     <Card className="min-w-[25%]">
@@ -47,18 +49,27 @@ export const URLComposerConfig = () => {
           </SelectContent>
         </Select>
         {config === "decompose" && (
-          <div className="flex gap-3 mt-4">
-            <div>
-              <Label htmlFor="url-params-key" className="mb-2">
-                Url Params Key
-              </Label>
-              <Input
-                type="text"
-                placeholder="e.g url,link,uri"
-                className="w-[100%]"
-                id="url-params-key"
+          <div>
+            <div className="flex gap-2 my-4">
+              <Checkbox
+                checked={autoDetectURL}
+                onClick={() => setAutoDetectURL(!autoDetectURL)}
               />
+              <Label>Automatically Detects URL</Label>
             </div>
+            {!autoDetectURL && (
+              <div className="mt-4 w-full">
+                <Label htmlFor="url-params-key" className="mb-2">
+                  Url Param Keys
+                </Label>
+                <Input
+                  type="text"
+                  placeholder="e.g url,link,uri"
+                  className="w-[100%]"
+                  id="url-params-key"
+                />
+              </div>
+            )}
           </div>
         )}
       </CardContent>

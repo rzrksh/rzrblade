@@ -13,13 +13,13 @@ export const urlTreeGenerator = ({ urlInput, urlKeys }: Args) => {
   const url = new URL(urlInput);
   const searchParams = url.searchParams;
   const params: any = [];
-  const chidren: any = [];
+  const children: any = [];
 
   for (const [key, value] of searchParams.entries()) {
     if (key) {
       if (urlKeys.includes(key)) {
         if (isValidURL(value)) {
-          chidren.push(urlTreeGenerator({ urlInput: value, urlKeys }));
+          children.push(urlTreeGenerator({ urlInput: value, urlKeys }));
         }
       } else {
         params.push({ key, value });
@@ -29,7 +29,7 @@ export const urlTreeGenerator = ({ urlInput, urlKeys }: Args) => {
 
   return {
     url: url.toString(),
-    chidren,
+    children,
     params
   };
 };

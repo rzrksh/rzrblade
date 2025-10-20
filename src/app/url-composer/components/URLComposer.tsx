@@ -1,20 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { urlTreeGenerator } from "@/utils/url-composser/url-tree-generator";
-
-type SearchParamsKeyValue = Array<{ key: string; value: string }>;
-
+import {URLDecomposserTree} from "./URLDecomposserTree";
 
 export const URLComposer = () => {
-  const [urlParams, setUrlParams] = useState<SearchParamsKeyValue>([]);
+  const [urlTree, setUrlTree] = useState<any>(null);
 
   const handleChangeTextUrl = (urlInput: string) => {
-    const mappedUrl = urlTreeGenerator({ urlInput, urlKeys: ['url','link'] });
-    console.log(mappedUrl);
+    const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys: ['url','link'] });
+    setUrlTree(generatedUrlTree);
   };
 
   return (
@@ -30,12 +27,7 @@ export const URLComposer = () => {
           onChange={(e) => handleChangeTextUrl(e.target.value)}
         />
       </div>
-      {/* {urlParams.map((item) => (
-        <div className="mt-3" key={item.key}>
-          <Label className="mb-2">{item.key}</Label>
-          <Input readOnly type="text" value={item.value}></Input>
-        </div>
-      ))} */}
+      <URLDecomposserTree urlTree={urlTree} />
     </div>
   );
 };
