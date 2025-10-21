@@ -1,10 +1,10 @@
 "use client";
 
+import { FileDown, Save } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -74,9 +74,13 @@ export const URLComposerConfig = () => {
         )}
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Button className="w-full">Save URL</Button>
+        <Button className="w-full">
+          <Save />
+          <span>Save URL</span>
+        </Button>
         <Button className="w-full" variant="outline">
-          Import URL
+          <FileDown />
+          <span>Import URL</span>
         </Button>
       </CardFooter>
     </Card>

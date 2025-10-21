@@ -3,9 +3,10 @@ import { isValidURL } from "./is-valid-url";
 interface Args {
   urlInput: string;
   urlKeys: string[];
+  level?: number;
 }
 
-export const urlTreeGenerator = ({ urlInput, urlKeys }: Args) => {
+export const urlTreeGenerator = ({ urlInput, urlKeys = [], level = 1 }: Args) => {
   if (!isValidURL(urlInput)) {
     return;
   }
@@ -17,9 +18,10 @@ export const urlTreeGenerator = ({ urlInput, urlKeys }: Args) => {
 
   for (const [key, value] of searchParams.entries()) {
     if (key) {
-      if (urlKeys.includes(key)) {
+      if (urlKeys.length ? urlKeys.includes(key) : isValidURL(value)) {
         if (isValidURL(value)) {
-          children.push(urlTreeGenerator({ urlInput: value, urlKeys }));
+          params.push({ key, value });
+          children.push(urlTreeGenerator({ urlInput: value, urlKeys, level: level + 1 }));
         }
       } else {
         params.push({ key, value });
@@ -30,23 +32,7 @@ export const urlTreeGenerator = ({ urlInput, urlKeys }: Args) => {
   return {
     url: url.toString(),
     children,
-    params
+    params,
+    level,
   };
 };
-
-// const ref = {
-//   key: "",
-//   url: "app://myapp",
-//   params: [{}, {}],
-//   chidren: {
-//     key: "callback",
-//     url: "https://www.myapp.com",
-//     params: [{}, {}],
-//     chidren: {
-//       key: "callback",
-//       url: "https://www.myapp.com",
-//       params: [{}, {}],
-//       chidren: null,
-//     },
-//   },
-// };
