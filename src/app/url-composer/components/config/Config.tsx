@@ -24,7 +24,7 @@ import {
 import { useConfigURL } from "./usecase/use-config-url";
 
 export const URLComposerConfig = () => {
-  const { config, handleChangeConfg } = useConfigURL();
+  const { config, handleSetConfig } = useConfigURL();
   const [autoDetectURL, setAutoDetectURL] = useState(true);
 
   return (
@@ -37,7 +37,7 @@ export const URLComposerConfig = () => {
         <Label className="mb-2" htmlFor="select-ops">
           Operation
         </Label>
-        <Select defaultValue={config} onValueChange={handleChangeConfg}>
+        <Select defaultValue={config} onValueChange={handleSetConfig}>
           <SelectTrigger id="select-ops" className="w-[100%]">
             <SelectValue />
           </SelectTrigger>

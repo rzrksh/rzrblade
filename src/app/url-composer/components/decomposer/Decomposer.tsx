@@ -10,8 +10,6 @@ import { URLDecomposserTree } from "./UrlDecomposerTree";
 export const Decomposer = () => {
   const [urlTree, setUrlTree] = useState<any>(null);
 
-  console.log(urlTree);
-
   const handleChangeTextUrl = (urlInput: string) => {
     const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys: [] });
     setUrlTree(generatedUrlTree);

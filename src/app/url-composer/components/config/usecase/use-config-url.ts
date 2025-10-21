@@ -1,13 +1,7 @@
-import { useState } from "react"
-
-type ConfigType = 'encode' | 'decode' | 'compose' | 'decompose';
+import { useUrlComposerContext } from "@/app/url-composer/context/url-composser.context";
 
 export const useConfigURL = () => {
-  const [config, setConfig] = useState<ConfigType>('decompose');
+  const { config, handleSetConfig } = useUrlComposerContext();
 
-  const handleChangeConfg = (value: ConfigType) => {
-    setConfig(value);
-  }
-
-  return {handleChangeConfg, config}
-}
+  return { handleSetConfig, config };
+};

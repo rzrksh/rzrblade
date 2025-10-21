@@ -1,0 +1,1 @@
+export type ConfigType = 'encode' | 'decode' | 'compose' | 'decompose';
