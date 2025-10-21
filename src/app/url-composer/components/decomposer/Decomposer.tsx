@@ -5,10 +5,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { urlTreeGenerator } from "@/utils/url-composser/url-tree-generator";
-import { URLDecomposserTree } from "./URLDecomposserTree";
+import { URLDecomposserTree } from "./UrlDecomposerTree";
 
-export const URLComposer = () => {
+export const Decomposer = () => {
   const [urlTree, setUrlTree] = useState<any>(null);
+
+  console.log(urlTree);
 
   const handleChangeTextUrl = (urlInput: string) => {
     const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys: [] });

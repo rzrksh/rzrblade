@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useConfigURL } from "../usecase/useConfigURL";
+import { useConfigURL } from "./usecase/use-config-url";
 
 export const URLComposerConfig = () => {
   const { config, handleChangeConfg } = useConfigURL();
@@ -78,10 +78,12 @@ export const URLComposerConfig = () => {
           <Save />
           <span>Save URL</span>
         </Button>
-        <Button className="w-full" variant="outline">
-          <FileDown />
-          <span>Import URL</span>
-        </Button>
+        {config === "compose" && (
+          <Button className="w-full" variant="outline">
+            <FileDown />
+            <span>Import URL</span>
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

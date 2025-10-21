@@ -1,12 +1,12 @@
-import { SavedURL } from "./components/SavedURL";
-import { URLComposer } from "./components/URLComposer";
-import { URLComposerConfig } from "./components/URLComposerConfig";
+import { URLComposerConfig } from "./components/config";
+import { Main } from "./components/main";
+import { SavedURL } from "./components/saved-url";
 
 const URLComposserPage = () => {
   return (
     <div className="flex w-full max-w-7xl mx-auto gap-4 justify-center my-9">
       <div className="w-3/4">
-        <URLComposer />
+        <Main />
       </div>
       <div className="w-1/4">
         <URLComposerConfig />

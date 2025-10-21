@@ -1,4 +1,6 @@
+import { v4 as uuid } from 'uuid';
 import { isValidURL } from "./is-valid-url";
+
 
 interface Args {
   urlInput: string;
@@ -30,6 +32,7 @@ export const urlTreeGenerator = ({ urlInput, urlKeys = [], level = 1 }: Args) =>
   }
 
   return {
+    id: uuid(),
     url: url.toString(),
     children,
     params,

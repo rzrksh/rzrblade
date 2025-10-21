@@ -1,0 +1,1 @@
+export { Decomposer } from './Decomposer';
