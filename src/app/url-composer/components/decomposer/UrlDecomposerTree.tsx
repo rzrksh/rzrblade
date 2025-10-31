@@ -15,39 +15,42 @@ interface Props {
   urlTree: any;
 }
 
-export const URLDecomposserTree = ({ urlTree }: Props) => {
+export const URLDecomposerTree = ({ urlTree }: Props) => {
   const [collapsed, setCollapsed] = useState(false);
   if (!urlTree) return null;
 
   return (
     <Card className="p-6">
-      {urlTree.level > 1 && (
-        <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2">
-          <div className="flex gap-2 items-center">
-            <Button
-              variant="ghost"
-              className="w-[40px]"
-              onClick={() => setCollapsed(!collapsed)}
-            >
-              {collapsed ? <ListChevronsUpDown /> : <ListChevronsDownUp />}
-            </Button>
-            <Label>
-              <Badge variant="secondary">URL Level {urlTree.level}</Badge>
-            </Label>
-          </div>
-          <div className="flex gap-2 items-center">
-            <Button>
-              <Copy />
-            </Button>
-            <Button variant="outline">
-              <Trash />
-            </Button>
-          </div>
+      <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2">
+        <div className="flex gap-2 items-center">
+          <Button
+            variant="ghost"
+            className="w-[40px]"
+            onClick={() => setCollapsed(!collapsed)}
+          >
+            {collapsed ? <ListChevronsUpDown /> : <ListChevronsDownUp />}
+          </Button>
+          <Label>
+            <Badge variant="secondary">URL Level {urlTree.level}</Badge>
+          </Label>
         </div>
-      )}
+        <div className="flex gap-2 items-center">
+          <Button>
+            <Copy />
+          </Button>
+          <Button variant="outline" className="border-red-500">
+            <Trash className="text-red-500" />
+          </Button>
+        </div>
+      </div>
       {!collapsed && (
         <>
-          <Input type="text" value={urlTree.url} onChange={() => {}} />
+          <div>
+            <Label className="mb-2">
+              <Badge variant="secondary">Full URL</Badge>
+            </Label>
+            <Input type="text" value={urlTree.url} onChange={() => {}} />
+          </div>
           <div>
             {Boolean(urlTree.params.length) && (
               <Label className="mb-2">
@@ -71,14 +74,14 @@ export const URLDecomposserTree = ({ urlTree }: Props) => {
                 <Button>
                   <Copy />
                 </Button>
-                <Button variant="outline">
-                  <Trash />
+                <Button variant="outline" className="border-red-500">
+                  <Trash className="text-red-500" />
                 </Button>
               </div>
             ))}
           </div>
           {urlTree.children.map((item: any) => (
-            <URLDecomposserTree key={item.id} urlTree={item} />
+            <URLDecomposerTree key={item.id} urlTree={item} />
           ))}
         </>
       )}

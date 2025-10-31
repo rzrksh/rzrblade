@@ -13,6 +13,8 @@ export const urlTreeGenerator = ({ urlInput, urlKeys = [], level = 1 }: Args) =>
     return;
   }
 
+  console.log('cek', urlKeys);
+
   const url = new URL(urlInput);
   const searchParams = url.searchParams;
   const params: any = [];

@@ -21,10 +21,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useUrlComposerContext } from "../../context/url-composser.context";
 import { useConfigURL } from "./usecase/use-config-url";
 
 export const URLComposerConfig = () => {
   const { config, handleSetConfig } = useConfigURL();
+  const { handleSetUrlKeys } = useUrlComposerContext();
   const [autoDetectURL, setAutoDetectURL] = useState(true);
 
   return (
@@ -52,10 +54,19 @@ export const URLComposerConfig = () => {
           <div>
             <div className="flex gap-2 my-4">
               <Checkbox
+                id="auto-detect-url-check"
                 checked={autoDetectURL}
-                onClick={() => setAutoDetectURL(!autoDetectURL)}
+                onClick={() => {
+                  if (!autoDetectURL) {
+                    handleSetUrlKeys('');
+                  }
+
+                  setAutoDetectURL(!autoDetectURL);
+                }}
               />
-              <Label>Automatically Detects URL</Label>
+              <Label htmlFor="auto-detect-url-check">
+                Automatically Detects URL
+              </Label>
             </div>
             {!autoDetectURL && (
               <div className="mt-4 w-full">
@@ -67,6 +78,7 @@ export const URLComposerConfig = () => {
                   placeholder="e.g url,link,uri"
                   className="w-[100%]"
                   id="url-params-key"
+                  onChange={(e) => handleSetUrlKeys(e.target.value || "")}
                 />
               </div>
             )}
