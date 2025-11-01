@@ -9,10 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { urlTreeGenerator } from "@/utils/url-composser/url-tree-generator";
+
 import { useUrlComposerContext } from "../../context/url-composser.context";
+import { urlTreeGenerator } from "../../utils/url-tree-generator";
 import { URLDecomposerTree } from "./UrlDecomposerTree";
 
 export const Decomposer = () => {
