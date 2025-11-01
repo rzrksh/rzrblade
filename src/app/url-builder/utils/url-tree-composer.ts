@@ -1,33 +1,27 @@
-import { isValidURL } from "./is-valid-url";
+import type { URLNode } from "../models";
 
-interface Args {
-  urlInput: string;
-  urlKeys: string[];
-  level: number
-}
+type UpdateBaseURLAtLevel = (params: {
+  urlTree: URLNode | null;
+  id: string;
+  newBaseUrl: string;
+}) => URLNode | null;
 
-export const urlTreeComposer = ({ urlInput, urlKeys = [], level = 1 }: Args) => {
-  if (!isValidURL(urlInput)) {
-    return null;
+export const updateBaseUrlAtLevel: UpdateBaseURLAtLevel = ({
+  newBaseUrl,
+  id,
+  urlTree,
+}) => {
+  if (!urlTree) return null;
+
+  if (urlTree?.id === id) {
+    return { ...urlTree, baseUrl: newBaseUrl };
   }
 
-  const url = new URL(urlInput);
-  const searchParams = url.searchParams;
-  const params: any = [];
-  const children: any = [];
-
-  for (const [key, value] of searchParams.entries()) {
-    if (key) {
-      if (urlKeys.length ? urlKeys.includes(key) : isValidURL(value)) {
-        if (isValidURL(value)) {
-          params.push({ key, value });
-          children.push(urlTreeComposer({ urlInput: value, urlKeys, level: level + 1 }));
-        }
-      } else {
-        params.push({ key, value });
-      }
-    }
-  }
-
-  return '';
+  return {
+    ...urlTree,
+    children: urlTree?.children?.map((child) =>
+      updateBaseUrlAtLevel({ urlTree: child, newBaseUrl, id }),
+    ),
+  };
 };
+

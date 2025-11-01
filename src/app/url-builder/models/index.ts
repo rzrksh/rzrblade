@@ -10,5 +10,5 @@ export interface URLNode {
   baseUrl?: string;
   level: number;
   params?: URLParam[];
-  children?: URLNode[];
+  children?: Array<URLNode | null>;
 }

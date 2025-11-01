@@ -15,6 +15,7 @@ interface URLComposerContext {
   handleChangeTextUrl: (urlInput: string) => void;
   handleSetConfig: (configType: ConfigType) => void;
   handleSetUrlKeys: (urlKeysString: string) => void;
+  handleSetUrlTree: (urlTree: URLNode | null) => void
 }
 
 const URLComposerContext = createContext<URLComposerContext>({
@@ -25,6 +26,7 @@ const URLComposerContext = createContext<URLComposerContext>({
   handleChangeTextUrl: () => {},
   handleSetConfig: () => {},
   handleSetUrlKeys: () => {},
+  handleSetUrlTree: () => {},
 });
 
 export const useUrlComposerContext = () => useContext(URLComposerContext);
@@ -49,6 +51,10 @@ export const URLComposerProvider = ({ children }: Props) => {
     setUrlTree(generatedUrlTree);
   };
 
+  const handleSetUrlTree = (urlTree: URLNode | null) => {
+    setUrlTree(urlTree);
+  }
+
   return (
     <URLComposerContext.Provider
       value={{
@@ -59,6 +65,7 @@ export const URLComposerProvider = ({ children }: Props) => {
         handleChangeTextUrl,
         handleSetConfig,
         handleSetUrlKeys,
+        handleSetUrlTree,
       }}
     >
       {children}
