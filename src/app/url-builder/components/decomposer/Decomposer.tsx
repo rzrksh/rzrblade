@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -12,18 +11,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 import { useUrlComposerContext } from "../../context/url-composser.context";
-import type { URLNode } from "../../models";
-import { urlTreeGenerator } from "../../utils/url-tree-generator";
 import { URLDecomposerTree } from "./UrlDecomposerTree";
 
 export const Decomposer = () => {
-  const [urlTree, setUrlTree] = useState<URLNode | null>(null);
-  const { urlKeys } = useUrlComposerContext();
-
-  const handleChangeTextUrl = (urlInput: string) => {
-    const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys });
-    setUrlTree(generatedUrlTree);
-  };
+  const { urlTree, urlInput, handleChangeTextUrl } = useUrlComposerContext();
 
   return (
     <Card className="min-w-full">
@@ -41,6 +32,7 @@ export const Decomposer = () => {
           className="mb-5"
           id="base-url"
           placeholder="Type any URL"
+          value={urlInput}
           onChange={(e) => handleChangeTextUrl(e.target.value)}
         />
         {urlTree && (

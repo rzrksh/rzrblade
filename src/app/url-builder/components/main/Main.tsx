@@ -7,7 +7,7 @@ export const Main = () => {
     <main className="my-14 px-16">
       <div className="mb-6">
         <h1 className="text-4xl font-bold mb-1 text-gray-950">URL Builder</h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-gray-600">
           Compose, Decompose, Encode and Decode URL Like a Pro
         </p>
       </div>

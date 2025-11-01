@@ -1,4 +1,4 @@
-import { useUrlComposerContext } from "@/app/url-composer/context/url-composser.context";
+import { useUrlComposerContext } from "@/app/url-builder/context/url-composser.context";
 
 export const useConfigURL = () => {
   const { config, handleSetConfig } = useUrlComposerContext();

@@ -34,6 +34,7 @@ export const urlTreeGenerator = ({ urlInput, urlKeys = [], level = 1 }: Args) =>
   return {
     id: uuid(),
     url: url.toString(),
+    baseUrl: url.toString().split('?')[0],
     children,
     params,
     level,

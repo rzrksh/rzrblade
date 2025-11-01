@@ -2,6 +2,7 @@ import {
   Copy,
   ListChevronsDownUp,
   ListChevronsUpDown,
+  PlusCircle,
   Trash,
 } from "lucide-react";
 import { useState } from "react";
@@ -18,6 +19,7 @@ interface Props {
 
 export const URLDecomposerTree = ({ urlTree }: Props) => {
   const [collapsed, setCollapsed] = useState(false);
+  
   if (!urlTree) return null;
 
   return (
@@ -48,9 +50,9 @@ export const URLDecomposerTree = ({ urlTree }: Props) => {
         <>
           <div>
             <Label className="mb-2">
-              <Badge variant="secondary">Full URL</Badge>
+              <Badge variant="secondary">Base URL</Badge>
             </Label>
-            <Input type="text" value={urlTree.url} onChange={() => {}} />
+            <Input type="text" value={urlTree.baseUrl} onChange={() => {}} />
           </div>
           <div>
             {Boolean(urlTree.params?.length) && (
@@ -58,7 +60,7 @@ export const URLDecomposerTree = ({ urlTree }: Props) => {
                 <Badge variant="secondary">URL Search Params</Badge>
               </Label>
             )}
-            {urlTree.params?.map((item: any) => (
+            {urlTree.params?.map((item) => (
               <div key={item.key} className="flex gap-2 mb-2 w-full">
                 <Input
                   type="text"
@@ -80,8 +82,13 @@ export const URLDecomposerTree = ({ urlTree }: Props) => {
                 </Button>
               </div>
             ))}
+            <div className="mt-6">
+              <Button size="sm" variant="outline">
+                <PlusCircle /> <span>Add Search Param</span>
+              </Button>
+            </div>
           </div>
-          {urlTree.children?.map((item: any) => (
+          {urlTree.children?.map((item) => (
             <URLDecomposerTree key={item.id} urlTree={item} />
           ))}
         </>
