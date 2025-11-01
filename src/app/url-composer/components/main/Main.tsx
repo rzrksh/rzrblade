@@ -4,14 +4,22 @@ import { SavedURL } from "../saved-url";
 
 export const Main = () => {
   return (
-    <main className="flex justify-between w-full px-16 mx-auto gap-4 my-9">
-      <div className="min-w-[70%]">
-        <PageRenderer />
+    <main className="my-14 px-16">
+      <div className="mb-6">
+        <h1 className="text-4xl font-bold mb-1 text-gray-950">URL Builder</h1>
+        <p className="text-sm text-gray-600">
+          Compose, Decompose, Encode and Decode URL Like a Pro
+        </p>
       </div>
-      <div className="min-w-[30%]">
-        <URLComposerConfig />
-        <div className="mt-4">
-          <SavedURL />
+      <div className="flex justify-between w-full mx-auto gap-4">
+        <div className="min-w-[calc(65%-theme(space.2))]">
+          <PageRenderer />
+        </div>
+        <div className="min-w-[calc(35%-theme(space.2))]">
+          <URLComposerConfig />
+          <div className="mt-4">
+            <SavedURL />
+          </div>
         </div>
       </div>
     </main>

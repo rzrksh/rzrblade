@@ -10,9 +10,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import type { URLNode } from "../../models";
 
 interface Props {
-  urlTree: any;
+  urlTree: URLNode;
 }
 
 export const URLDecomposerTree = ({ urlTree }: Props) => {
@@ -52,12 +53,12 @@ export const URLDecomposerTree = ({ urlTree }: Props) => {
             <Input type="text" value={urlTree.url} onChange={() => {}} />
           </div>
           <div>
-            {Boolean(urlTree.params.length) && (
+            {Boolean(urlTree.params?.length) && (
               <Label className="mb-2">
                 <Badge variant="secondary">URL Search Params</Badge>
               </Label>
             )}
-            {urlTree.params.map((item: any) => (
+            {urlTree.params?.map((item: any) => (
               <div key={item.key} className="flex gap-2 mb-2 w-full">
                 <Input
                   type="text"
@@ -80,7 +81,7 @@ export const URLDecomposerTree = ({ urlTree }: Props) => {
               </div>
             ))}
           </div>
-          {urlTree.children.map((item: any) => (
+          {urlTree.children?.map((item: any) => (
             <URLDecomposerTree key={item.id} urlTree={item} />
           ))}
         </>

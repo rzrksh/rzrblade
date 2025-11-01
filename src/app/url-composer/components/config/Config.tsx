@@ -1,6 +1,6 @@
 "use client";
 
-import { FileDown, Save } from "lucide-react";
+import { FileDown, FileUp, Save } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,8 +32,8 @@ export const URLComposerConfig = () => {
   return (
     <Card className="min-w-[25%]">
       <CardHeader>
-        <CardTitle>URL Composer Config</CardTitle>
-        <CardDescription>Change you URL Composser Config</CardDescription>
+        <CardTitle>URL Builder Config</CardTitle>
+        <CardDescription>Change you URL Builder Config</CardDescription>
       </CardHeader>
       <CardContent>
         <Label className="mb-2" htmlFor="select-ops">
@@ -58,7 +58,7 @@ export const URLComposerConfig = () => {
                 checked={autoDetectURL}
                 onClick={() => {
                   if (!autoDetectURL) {
-                    handleSetUrlKeys('');
+                    handleSetUrlKeys("");
                   }
 
                   setAutoDetectURL(!autoDetectURL);
@@ -91,10 +91,16 @@ export const URLComposerConfig = () => {
           <span>Save URL</span>
         </Button>
         {config === "compose" && (
-          <Button className="w-full" variant="outline">
-            <FileDown />
-            <span>Import URL</span>
-          </Button>
+          <div className="flex gap-2 w-full">
+            <Button className="flex-1/2" variant="outline">
+              <FileDown />
+              <span>Import URL JSON</span>
+            </Button>
+            <Button className="flex-1/2" variant="outline">
+              <FileUp />
+              <span>Export URL JSON</span>
+            </Button>
+          </div>
         )}
       </CardFooter>
     </Card>

@@ -12,11 +12,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 import { useUrlComposerContext } from "../../context/url-composser.context";
+import type { URLNode } from "../../models";
 import { urlTreeGenerator } from "../../utils/url-tree-generator";
 import { URLDecomposerTree } from "./UrlDecomposerTree";
 
 export const Decomposer = () => {
-  const [urlTree, setUrlTree] = useState<any>(null);
+  const [urlTree, setUrlTree] = useState<URLNode | null>(null);
   const { urlKeys } = useUrlComposerContext();
 
   const handleChangeTextUrl = (urlInput: string) => {
@@ -27,7 +28,7 @@ export const Decomposer = () => {
   return (
     <Card className="min-w-full">
       <CardHeader>
-        <CardTitle className="text-2xl">URL Decomposer</CardTitle>
+        <CardTitle>Decomposer</CardTitle>
         <CardDescription>
           Turn messy, encoded URLs into human-readable data.
         </CardDescription>

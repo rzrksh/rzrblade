@@ -12,7 +12,7 @@ export const Composer = () => {
   return (
     <Card className="min-w-full">
       <CardHeader>
-        <CardTitle className="text-2xl">URL Composer</CardTitle>
+        <CardTitle>Composer</CardTitle>
         <CardDescription>
           Craft your URLs easily with a URL composer, we handle the encoding for you.
         </CardDescription>

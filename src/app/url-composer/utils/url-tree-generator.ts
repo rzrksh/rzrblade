@@ -10,7 +10,7 @@ interface Args {
 
 export const urlTreeGenerator = ({ urlInput, urlKeys = [], level = 1 }: Args) => {
   if (!isValidURL(urlInput)) {
-    return;
+    return null;
   }
 
   const url = new URL(urlInput);
