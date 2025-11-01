@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 const Navbar = () => {
   return (
-    <nav className="px-16 w-full fixed top-0 left-0 bg-white/90 border-b">
+    <nav className="px-16 w-full fixed top-0 left-0 bg-white/90 border-b z-10">
       <div className="flex justify-between items-center">
         <Image src="/rzrblade_light.svg" width={150} height={20} alt="rzrblade" />
         <div className="flex text-sm p-2">

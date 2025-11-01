@@ -47,24 +47,29 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
         <div className="flex gap-2 items-center">
           {isEdit ? (
             <>
-              <Button variant="outline" onClick={handleChangeEdit}>
-                <CircleCheck />
+              <Button size="sm" variant="outline" onClick={handleChangeEdit}>
+                <CircleCheck /> <span>Confirm</span>
               </Button>
-              <Button variant="outline" onClick={handleChangeEdit}>
-                <CircleX />
+              <Button size="sm" variant="outline" onClick={handleChangeEdit}>
+                <CircleX /> <span>Cancel</span>
               </Button>
             </>
           ) : (
-            <Button variant="outline" onClick={handleChangeEdit}>
-              <Edit />
+            <Button size="sm" variant="outline" onClick={handleChangeEdit}>
+              <Edit /> <span>Edit</span>
             </Button>
           )}
-          <Button variant="outline">
-            <Copy />
-          </Button>
-          <Button variant="outline" className="border-red-500">
-            <Trash className="text-red-500" />
-          </Button>
+          {!isEdit && (
+            <>
+              <Button size="sm" variant="outline">
+                <Copy /> <span>Copy</span>
+              </Button>
+              <Button size="sm" variant="outline" className="border-red-500">
+                <Trash className="text-red-500" />{" "}
+                <span className="text-red-500">Delete</span>
+              </Button>
+            </>
+          )}
         </div>
       </div>
       {!collapsed && (
