@@ -7,9 +7,10 @@ interface Args {
   urlInput: string;
   urlKeys: string[];
   level?: number;
+  parentURLParam?: string;
 }
 
-export const urlTreeGenerator = ({ urlInput, urlKeys = [], level = 1 }: Args) => {
+export const urlTreeGenerator = ({ urlInput, urlKeys = [], level = 1, parentURLParam = '' }: Args) => {
   if (!isValidURL(urlInput)) {
     return null;
   }
@@ -23,21 +24,22 @@ export const urlTreeGenerator = ({ urlInput, urlKeys = [], level = 1 }: Args) =>
     if (key) {
       if (urlKeys.length ? urlKeys.includes(key) : isValidURL(value)) {
         if (isValidURL(value)) {
-          params.push({ key, value });
-          children.push(urlTreeGenerator({ urlInput: value, urlKeys, level: level + 1 }));
+          params.push({ key, value, id: uuid(), isUrl: true});
+          children.push(urlTreeGenerator({ urlInput: value, urlKeys, level: level + 1, parentURLParam: key }));
         }
       } else {
-        params.push({ key, value });
+        params.push({ key, value, id: uuid(), isUrl: false});
       }
     }
   }
 
   return {
     id: uuid(),
-    url: url.toString(),
     baseUrl: url.toString().split('?')[0],
     children,
     params,
     level,
+    parentURLParam,
+    hash: url.hash
   };
 };

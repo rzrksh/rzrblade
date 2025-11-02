@@ -13,7 +13,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useUrlComposerContext } from "../../context/url-composser.context";
-import { DEMO_URL } from "../../models/demo-url";
+import { DEMO_SIMPLE_URL, DEMO_URL } from "../../models/demo-url";
 import { URLDecomposerTree } from "./UrlDecomposerTree";
 
 export const Decomposer = () => {
@@ -36,7 +36,7 @@ export const Decomposer = () => {
             {!urlInput && <Button
               size="sm"
               variant="outline"
-              onClick={() => handleChangeTextUrl(DEMO_URL)}
+              onClick={() => handleChangeTextUrl(DEMO_SIMPLE_URL)}
             >
               <FlaskConical /> <span>Try</span>
             </Button>}
@@ -44,7 +44,7 @@ export const Decomposer = () => {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-red-500"
+                className="border-red-100"
                 onClick={() => handleChangeTextUrl("")}
               >
                 <CircleX className="text-red-500" />{" "}

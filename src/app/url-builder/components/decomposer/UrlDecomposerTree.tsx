@@ -1,19 +1,22 @@
-import {
-  CircleCheck,
-  CircleX,
-  Copy,
-  Edit,
-  ListChevronsDownUp,
-  ListChevronsUpDown,
-  PlusCircle,
-  Trash,
-} from "lucide-react";
+import { Info, PlusCircle, Trash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import { Label } from "@/components/ui/label";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import type { URLNode } from "../../models";
+import { UrlNodeHeader } from "./UrlNodeHeader";
 import { useURLDecomposerView } from "./usecase/use-view";
 
 interface Props {
@@ -24,54 +27,29 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
   const {
     collapsed,
     isEdit,
-    handleChangeEdit,
+    draftNode,
     handleChangeBaseURL,
     handleCollapse,
-  } = useURLDecomposerView();
+    handleChangeKeyURLParams,
+    handleChangeValueURLParams,
+    handleChangeURLHash,
+    handleClickEdit,
+    handleRemoveParamKey,
+  } = useURLDecomposerView({ urlNode });
 
-  if (!urlNode) return null;
+  if (!draftNode) return null;
 
   return (
     <Card className="p-6">
-      <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2">
-        <div className="flex gap-2 items-center">
-          <Button variant="ghost" className="w-[40px]" onClick={handleCollapse}>
-            {collapsed ? <ListChevronsUpDown /> : <ListChevronsDownUp />}
-          </Button>
-          <Label>
-            <Badge className="bg-gray-200" variant="secondary">
-              URL Level {urlNode.level}
-            </Badge>
-          </Label>
-        </div>
-        <div className="flex gap-2 items-center">
-          {isEdit ? (
-            <>
-              <Button size="sm" variant="outline" onClick={handleChangeEdit}>
-                <CircleCheck /> <span>Confirm</span>
-              </Button>
-              <Button size="sm" variant="outline" onClick={handleChangeEdit}>
-                <CircleX /> <span>Cancel</span>
-              </Button>
-            </>
-          ) : (
-            <Button size="sm" variant="outline" onClick={handleChangeEdit}>
-              <Edit /> <span>Edit</span>
-            </Button>
-          )}
-          {!isEdit && (
-            <>
-              <Button size="sm" variant="outline">
-                <Copy /> <span>Copy</span>
-              </Button>
-              <Button size="sm" variant="outline" className="border-red-500">
-                <Trash className="text-red-500" />{" "}
-                <span className="text-red-500">Delete</span>
-              </Button>
-            </>
-          )}
-        </div>
-      </div>
+      <UrlNodeHeader
+        isEdit={isEdit}
+        collapsed={collapsed}
+        draftNode={draftNode}
+        handleCancelChange={() => handleClickEdit("cancel")}
+        handleClickEdit={() => handleClickEdit()}
+        handleCollapse={handleCollapse}
+        handleConfirmChange={() => handleClickEdit("confirm")}
+      />
       {!collapsed && (
         <>
           <div>
@@ -80,49 +58,145 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
             </Label>
             <Input
               type="text"
-              value={urlNode.baseUrl}
+              value={draftNode.baseUrl}
               disabled={!isEdit}
               onChange={(e) =>
                 handleChangeBaseURL({
                   newBaseUrl: e.target.value,
-                  id: urlNode.id,
                 })
               }
             />
           </div>
           <div>
-            {Boolean(urlNode.params?.length) && (
-              <Label className="mb-2">
-                <Badge variant="secondary">URL Search Params</Badge>
-              </Label>
-            )}
-            {urlNode.params?.map((item) => (
-              <div key={item.key} className="flex gap-2 mb-2 w-full">
-                <Input
-                  type="text"
-                  value={item.key}
-                  className="w-[250px]"
-                  disabled={!isEdit}
-                  onChange={() => {}}
-                />
-                <Input
-                  type="text"
-                  value={item.value}
-                  className="w-full"
-                  disabled={!isEdit}
-                  onChange={() => {}}
-                />
+            <Label className="mb-2">
+              <Badge variant="secondary">URL Search Params</Badge>
+            </Label>
+            {draftNode.params?.map((item) => (
+              <div key={item.id} className="flex gap-2 mb-2 w-full">
+                {item.isUrl ? (
+                  <InputGroup className="w-[250px]">
+                    <InputGroupInput
+                      type="text"
+                      value={item.key}
+                      disabled={!isEdit}
+                      onChange={(e) =>
+                        handleChangeKeyURLParams({
+                          id: item.id,
+                          newKey: e.target.value,
+                        })
+                      }
+                    />
+                    <InputGroupAddon align="inline-end">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <InputGroupButton
+                            className="rounded-full"
+                            size="icon-xs"
+                          >
+                            <Info />
+                          </InputGroupButton>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          Direct changes on key affect child URLs.
+                        </TooltipContent>
+                      </Tooltip>
+                    </InputGroupAddon>
+                  </InputGroup>
+                ) : (
+                  <Input
+                    type="text"
+                    value={item.key}
+                    className="w-[250px]"
+                    disabled={!isEdit}
+                    onChange={(e) =>
+                      handleChangeKeyURLParams({
+                        id: item.id,
+                        newKey: e.target.value,
+                      })
+                    }
+                  />
+                )}
+                {item.isUrl ? (
+                  <InputGroup className="w-full">
+                    <InputGroupInput
+                      type="text"
+                      value={item.value}
+                      disabled={!isEdit}
+                      onChange={(e) =>
+                        handleChangeValueURLParams({
+                          id: item.id,
+                          value: e.target.value,
+                        })
+                      }
+                    />
+                    <InputGroupAddon align="inline-end">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <InputGroupButton
+                            className="rounded-full"
+                            size="icon-xs"
+                          >
+                            <Info />
+                          </InputGroupButton>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          Direct changes on value affect child URLs.
+                        </TooltipContent>
+                      </Tooltip>
+                    </InputGroupAddon>
+                  </InputGroup>
+                ) : (
+                  <Input
+                    type="text"
+                    value={item.value}
+                    className="w-full"
+                    disabled={!isEdit}
+                    onChange={(e) =>
+                      handleChangeValueURLParams({
+                        id: item.id,
+                        value: e.target.value,
+                      })
+                    }
+                  />
+                )}
+                {isEdit && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-red-100"
+                    onClick={() => handleRemoveParamKey(item.id)}
+                  >
+                    <Trash className="text-red-500" />{" "}
+                  </Button>
+                )}
               </div>
             ))}
             {isEdit && (
-              <div className="mt-6">
+              <div className="mt-4">
                 <Button size="sm" variant="outline">
                   <PlusCircle /> <span>Add Search Param</span>
                 </Button>
               </div>
             )}
           </div>
-          {urlNode.children?.map((item) => (
+
+          {Boolean(draftNode.hash) && (
+            <div>
+              <Label className="mb-2">
+                <Badge variant="secondary">URL Hash</Badge>
+              </Label>
+              <div className="flex gap-2 mb-2 w-full">
+                <Input
+                  type="text"
+                  value={draftNode.hash}
+                  className="w-[250px]"
+                  disabled={!isEdit}
+                  onChange={(e) => handleChangeURLHash(e.target.value)}
+                />
+              </div>
+            </div>
+          )}
+          {draftNode.children?.map((item) => (
             <URLDecomposerTree key={item?.id} urlNode={item} />
           ))}
         </>

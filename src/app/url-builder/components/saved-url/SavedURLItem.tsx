@@ -1,4 +1,4 @@
-import { Import } from "lucide-react";
+import { CircleX, FileUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -20,8 +20,10 @@ export const SavedURLItem = () => {
       </ItemContent>
       <ItemActions>
         <Button variant="outline" size="sm">
-          <Import />
-          <span>Load</span>
+          <FileUp />
+        </Button>
+        <Button variant="outline" className="border-red-100" size="sm">
+          <CircleX className="text-red-500" />
         </Button>
       </ItemActions>
     </Item>

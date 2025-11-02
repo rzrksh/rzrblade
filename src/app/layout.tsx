@@ -1,6 +1,8 @@
 import Navbar from "@/components/composition/navbar";
 import "./globals.css";
 import Footer from "@/components/composition/footer";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata = {
   title: "Next.js",
@@ -15,9 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <div className="pt-[56px]">{children}</div>
-        <Footer />
+        <TooltipProvider>
+          <Toaster position="top-center" />
+          <Navbar />
+          <div className="pt-[56px]">{children}</div>
+          <Footer />
+        </TooltipProvider>
       </body>
     </html>
   );

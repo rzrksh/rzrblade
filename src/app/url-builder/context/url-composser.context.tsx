@@ -15,18 +15,16 @@ interface URLComposerContext {
   handleChangeTextUrl: (urlInput: string) => void;
   handleSetConfig: (configType: ConfigType) => void;
   handleSetUrlKeys: (urlKeysString: string) => void;
-  handleSetUrlTree: (urlTree: URLNode | null) => void
 }
 
 const URLComposerContext = createContext<URLComposerContext>({
   config: "compose",
-  urlInput: '',
+  urlInput: "",
   urlKeys: [],
   urlTree: null,
   handleChangeTextUrl: () => {},
   handleSetConfig: () => {},
   handleSetUrlKeys: () => {},
-  handleSetUrlTree: () => {},
 });
 
 export const useUrlComposerContext = () => useContext(URLComposerContext);
@@ -35,25 +33,37 @@ export const URLComposerProvider = ({ children }: Props) => {
   const [config, setConfig] = useState<ConfigType>("decompose");
   const [urlKeys, setUrlKeys] = useState<string[]>([]);
   const [urlInput, setUrlInput] = useState("");
-  const [urlTree, setUrlTree] = useState<URLNode | null>(null);
+  const [urlTree, _setUrlTree] = useState<URLNode | null>(null);
 
   const handleSetConfig = (configType: ConfigType) => {
     setConfig(configType);
   };
 
   const handleSetUrlKeys = (urlKeysString: string) => {
-    setUrlKeys(urlKeysString.split(","));
+    if (!urlKeysString) {
+      setUrlKeys([]);
+
+      const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys: [] });
+      _setUrlTree(generatedUrlTree);
+      return;
+    }
+
+    const splitedKeys = urlKeysString.split(",");
+
+    setUrlKeys(splitedKeys);
+    const generatedUrlTree = urlTreeGenerator({
+      urlInput,
+      urlKeys: splitedKeys,
+    });
+
+    _setUrlTree(generatedUrlTree);
   };
 
   const handleChangeTextUrl = (urlInput: string) => {
     setUrlInput(urlInput);
     const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys });
-    setUrlTree(generatedUrlTree);
+    _setUrlTree(generatedUrlTree);
   };
-
-  const handleSetUrlTree = (urlTree: URLNode | null) => {
-    setUrlTree(urlTree);
-  }
 
   return (
     <URLComposerContext.Provider
@@ -65,7 +75,6 @@ export const URLComposerProvider = ({ children }: Props) => {
         handleChangeTextUrl,
         handleSetConfig,
         handleSetUrlKeys,
-        handleSetUrlTree,
       }}
     >
       {children}
