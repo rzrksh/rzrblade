@@ -59,7 +59,7 @@ export const Decomposer = () => {
           URL
         </Label>
         <Textarea
-          className="mb-5"
+          className="mb-5 break-all"
           id="base-url"
           placeholder="Type any URL"
           value={urlInput}

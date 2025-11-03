@@ -9,10 +9,11 @@ export interface URLParam {
 
 export interface URLNode {
   id: string;
-  baseUrl?: string;
+  url: string;
+  baseUrl: string;
   level: number;
-  params?: URLParam[];
-  hash?: string;
+  params: URLParam[];
+  hash: string;
   parentURLParam: string;
-  children?: Array<URLNode | null>;
+  children: Array<URLNode | null>;
 }

@@ -25,28 +25,37 @@ export const updateURLTree: UpdateBaseURLAtLevel = ({
   };
 };
 
-export const updateURLTextInput = (urlNode: URLNode | null) => {
+export const updateURLTextInput = ({
+  newUrlNode,
+}: {
+  newUrlNode: URLNode | null;
+}) => {
   try {
-    const baseUrl = new URL(urlNode?.baseUrl || '');
+    const baseUrl = new URL(newUrlNode?.baseUrl || "");
 
-    if (urlNode?.hash) {
-      baseUrl.hash =  urlNode.hash
-    }
+    baseUrl.hash = newUrlNode?.hash || "";
 
-    urlNode?.params?.forEach(item => {
+    newUrlNode?.params?.forEach((item) => {
       if (item.isUrl) {
-        const childNode = urlNode.children?.find(node => node?.parentURLParam === item.key);
-        
+        const childNode = newUrlNode.children?.find(
+          (node) => node?.parentURLParam === item.key,
+        );
+
         if (childNode) {
-          baseUrl.searchParams.set(item.key, updateURLTextInput(childNode) || '');
+          baseUrl.searchParams.append(
+            item.key,
+            updateURLTextInput({newUrlNode: childNode }) || "",
+          );
         }
       } else {
-        baseUrl.searchParams.set(item.key, item.value);
+        baseUrl.searchParams.append(item.key, item.value);
       }
     });
-    
-    return baseUrl.toString();
-  } catch {
 
+    return baseUrl.toString();
+  } catch (error) {
+    if (error) {
+      console.error("url tree composer", error);
+    }
   }
-}
+};

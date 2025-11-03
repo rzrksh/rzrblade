@@ -3,9 +3,10 @@ import {
   CircleX,
   Copy,
   Edit,
+  Eye,
+  EyeClosed,
   ListChevronsDownUp,
   ListChevronsUpDown,
-  Trash,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,20 +17,26 @@ interface Props {
   draftNode: URLNode;
   collapsed: boolean;
   isEdit: boolean;
+  isShowFullUrl: boolean;
   handleCollapse: () => void;
+  handleCopy: () => void;
   handleClickEdit: () => void;
   handleConfirmChange: () => void;
   handleCancelChange: () => void;
+  handleToggleShowFullURL: () => void;
 }
 
 export const UrlNodeHeader = ({
   draftNode,
   collapsed,
   isEdit,
+  isShowFullUrl,
   handleCollapse,
+  handleCopy,
   handleClickEdit,
   handleCancelChange,
   handleConfirmChange,
+  handleToggleShowFullURL,
 }: Props) => {
   return (
     <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2">
@@ -45,7 +52,7 @@ export const UrlNodeHeader = ({
           )}
 
           <Badge className="bg-gray-200" variant="secondary">
-            {draftNode.parentURLParam === ""
+            {draftNode.level === 1
               ? "root"
               : `Parent Key: ${draftNode.parentURLParam}`}
           </Badge>
@@ -60,10 +67,6 @@ export const UrlNodeHeader = ({
             <Button size="sm" variant="outline" onClick={handleCancelChange}>
               <CircleX /> <span>Cancel</span>
             </Button>
-            <Button size="sm" variant="outline" className="border-red-100">
-              <Trash className="text-red-500" />{" "}
-              <span className="text-red-500">Delete</span>
-            </Button>
           </>
         ) : (
           <Button size="sm" variant="outline" onClick={handleClickEdit}>
@@ -71,9 +74,19 @@ export const UrlNodeHeader = ({
           </Button>
         )}
         {!isEdit && (
-          <Button size="sm" variant="outline">
-            <Copy /> <span>Copy</span>
-          </Button>
+          <>
+            <Button size="sm" variant="outline" onClick={handleCopy}>
+              <Copy /> <span>Copy</span>
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={handleToggleShowFullURL}
+            >
+              {isShowFullUrl ? <EyeClosed /> : <Eye />}{" "}
+              <span>{isShowFullUrl ? "Hide" : "Show"} Full URL</span>
+            </Button>
+          </>
         )}
       </div>
     </div>

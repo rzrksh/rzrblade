@@ -33,7 +33,7 @@ export const URLComposerProvider = ({ children }: Props) => {
   const [config, setConfig] = useState<ConfigType>("decompose");
   const [urlKeys, setUrlKeys] = useState<string[]>([]);
   const [urlInput, setUrlInput] = useState("");
-  const [urlTree, _setUrlTree] = useState<URLNode | null>(null);
+  const [urlTree, setUrlTree] = useState<URLNode | null>(null);
 
   const handleSetConfig = (configType: ConfigType) => {
     setConfig(configType);
@@ -44,7 +44,7 @@ export const URLComposerProvider = ({ children }: Props) => {
       setUrlKeys([]);
 
       const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys: [] });
-      _setUrlTree(generatedUrlTree);
+      setUrlTree(generatedUrlTree);
       return;
     }
 
@@ -56,13 +56,13 @@ export const URLComposerProvider = ({ children }: Props) => {
       urlKeys: splitedKeys,
     });
 
-    _setUrlTree(generatedUrlTree);
+    setUrlTree(generatedUrlTree);
   };
 
   const handleChangeTextUrl = (urlInput: string) => {
     setUrlInput(urlInput);
     const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys });
-    _setUrlTree(generatedUrlTree);
+    setUrlTree(generatedUrlTree);
   };
 
   return (

@@ -1,7 +1,8 @@
-import { Info, PlusCircle, Trash } from "lucide-react";
+import { Eye, Info, PlusCircle, Trash } from "lucide-react";
+import { AlertDialogComposed } from "@/components/composition/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   InputGroup,
@@ -26,15 +27,19 @@ interface Props {
 export const URLDecomposerTree = ({ urlNode }: Props) => {
   const {
     collapsed,
-    isEdit,
     draftNode,
+    isEdit,
+    isShowFullUrl,
+    handleAddParamKey,
     handleChangeBaseURL,
     handleCollapse,
+    handleCopyURL,
     handleChangeKeyURLParams,
     handleChangeValueURLParams,
     handleChangeURLHash,
     handleClickEdit,
     handleRemoveParamKey,
+    handleToggleShowFullURL,
   } = useURLDecomposerView({ urlNode });
 
   if (!draftNode) return null;
@@ -43,15 +48,36 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
     <Card className="p-6">
       <UrlNodeHeader
         isEdit={isEdit}
+        isShowFullUrl={isShowFullUrl}
         collapsed={collapsed}
         draftNode={draftNode}
         handleCancelChange={() => handleClickEdit("cancel")}
         handleClickEdit={() => handleClickEdit()}
         handleCollapse={handleCollapse}
+        handleCopy={() =>
+          handleCopyURL({
+            url: draftNode.url,
+            key: draftNode.parentURLParam,
+            level: draftNode.level,
+          })
+        }
         handleConfirmChange={() => handleClickEdit("confirm")}
+        handleToggleShowFullURL={handleToggleShowFullURL}
       />
       {!collapsed && (
         <>
+          {isShowFullUrl && (
+            <div>
+              <Label className="mb-2">
+                <Badge variant="secondary">Full URL</Badge>
+              </Label>
+              <Card className="p-2 rounded-md">
+                <CardContent className="p-0 text-xs break-all">
+                  {draftNode.url}
+                </CardContent>
+              </Card>
+            </div>
+          )}
           <div>
             <Label className="mb-2">
               <Badge variant="secondary">Base URL</Badge>
@@ -73,19 +99,19 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
             </Label>
             {draftNode.params?.map((item) => (
               <div key={item.id} className="flex gap-2 mb-2 w-full">
-                {item.isUrl ? (
-                  <InputGroup className="w-[250px]">
-                    <InputGroupInput
-                      type="text"
-                      value={item.key}
-                      disabled={!isEdit}
-                      onChange={(e) =>
-                        handleChangeKeyURLParams({
-                          id: item.id,
-                          newKey: e.target.value,
-                        })
-                      }
-                    />
+                <InputGroup className="w-[250px]">
+                  <InputGroupInput
+                    type="text"
+                    value={item.key}
+                    disabled={!isEdit}
+                    onChange={(e) =>
+                      handleChangeKeyURLParams({
+                        id: item.id,
+                        newKey: e.target.value,
+                      })
+                    }
+                  />
+                  {item.isUrl && (
                     <InputGroupAddon align="inline-end">
                       <Tooltip>
                         <TooltipTrigger asChild>
@@ -101,34 +127,21 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
                         </TooltipContent>
                       </Tooltip>
                     </InputGroupAddon>
-                  </InputGroup>
-                ) : (
-                  <Input
+                  )}
+                </InputGroup>
+                <InputGroup className="w-full">
+                  <InputGroupInput
                     type="text"
-                    value={item.key}
-                    className="w-[250px]"
+                    value={item.value}
                     disabled={!isEdit}
                     onChange={(e) =>
-                      handleChangeKeyURLParams({
+                      handleChangeValueURLParams({
                         id: item.id,
-                        newKey: e.target.value,
+                        value: e.target.value,
                       })
                     }
                   />
-                )}
-                {item.isUrl ? (
-                  <InputGroup className="w-full">
-                    <InputGroupInput
-                      type="text"
-                      value={item.value}
-                      disabled={!isEdit}
-                      onChange={(e) =>
-                        handleChangeValueURLParams({
-                          id: item.id,
-                          value: e.target.value,
-                        })
-                      }
-                    />
+                  {item.isUrl && (
                     <InputGroupAddon align="inline-end">
                       <Tooltip>
                         <TooltipTrigger asChild>
@@ -144,36 +157,39 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
                         </TooltipContent>
                       </Tooltip>
                     </InputGroupAddon>
-                  </InputGroup>
-                ) : (
-                  <Input
-                    type="text"
-                    value={item.value}
-                    className="w-full"
-                    disabled={!isEdit}
-                    onChange={(e) =>
-                      handleChangeValueURLParams({
-                        id: item.id,
-                        value: e.target.value,
-                      })
-                    }
-                  />
-                )}
-                {isEdit && (
+                  )}
+                </InputGroup>
+                {isEdit && !item.isUrl && (
                   <Button
                     size="sm"
                     variant="outline"
                     className="border-red-100"
                     onClick={() => handleRemoveParamKey(item.id)}
                   >
-                    <Trash className="text-red-500" />{" "}
+                    <Trash className="text-red-500" />
                   </Button>
+                )}
+                {isEdit && item.isUrl && (
+                  <AlertDialogComposed
+                    title={`Delete URL Paramater (Key: ${item.key})`}
+                    description="Pending removal. Finalized after clicking Confirm above."
+                    onClickConfirm={() => handleRemoveParamKey(item.id)}
+                    confirmText="OK"
+                  >
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="border-red-100"
+                    >
+                      <Trash className="text-red-500" />{" "}
+                    </Button>
+                  </AlertDialogComposed>
                 )}
               </div>
             ))}
             {isEdit && (
               <div className="mt-4">
-                <Button size="sm" variant="outline">
+                <Button size="sm" variant="outline" onClick={handleAddParamKey}>
                   <PlusCircle /> <span>Add Search Param</span>
                 </Button>
               </div>
