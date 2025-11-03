@@ -114,13 +114,23 @@ export const useURLDecomposerView = ({
     setIsEdit(!isEdit);
 
     if (action === "confirm") {
-      const newURLTree = updateURLTree({
+      const editedURLParams: string[] = [];
+      const prevUrlParam = previousNode.current?.params.filter(item => item.isUrl);
+      const newUrlParam = draftNode?.params.filter(item => item.isUrl);
+
+      prevUrlParam?.forEach((_, index) => {
+        if (newUrlParam?.[index].value !== prevUrlParam[index].value) {
+          editedURLParams.push(prevUrlParam[index].id);
+        }
+      });
+
+      const newUrlNode = updateURLTree({
         urlTree,
         id: draftNode?.id || "",
         urlNode: draftNode,
       });
 
-      const newStringURL = updateURLTextInput({ newUrlNode: newURLTree }) || "";
+      const newStringURL = updateURLTextInput({ newUrlNode, editedURLParams }) || "";
       handleChangeTextUrl(newStringURL);
 
       toast.success("URL has been successfully changed!");
@@ -147,12 +157,12 @@ export const useURLDecomposerView = ({
     level,
   }: {
     url: string;
-    key?: string;
-    level?: number;
+    key: string;
+    level: number;
   }) => {
     navigator.clipboard.writeText(url);
-    toast.success(`URL Copied!`, {
-      description: key && level ?`Key: ${level === 1 ? "root" : key}, Level: ${level}` : '',
+    toast.success('URL Copied!', {
+      description: key || level ?`Key: ${level === 1 ? "root" : key}, Level: ${level}` : '',
     });
   };
 

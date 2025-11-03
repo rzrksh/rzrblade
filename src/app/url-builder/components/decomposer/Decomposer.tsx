@@ -1,6 +1,7 @@
 "use client";
 
 import { CircleX, Copy, FlaskConical } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,7 +14,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useUrlComposerContext } from "../../context/url-composser.context";
-import { DEMO_SIMPLE_URL, DEMO_URL } from "../../models/demo-url";
+import { DEMO_URL } from "../../models/demo-url";
 import { URLDecomposerTree } from "./UrlDecomposerTree";
 
 export const Decomposer = () => {
@@ -29,17 +30,26 @@ export const Decomposer = () => {
         <CardAction>
           <div className="flex gap-2">
             {urlInput && (
-              <Button size="sm" variant="outline" onClick={() => {}}>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  navigator.clipboard.writeText(urlInput);
+                  toast.success("URL Copied!");
+                }}
+              >
                 <Copy /> <span>Copy URL</span>
               </Button>
             )}
-            {!urlInput && <Button
-              size="sm"
-              variant="outline"
-              onClick={() => handleChangeTextUrl(DEMO_SIMPLE_URL)}
-            >
-              <FlaskConical /> <span>Try</span>
-            </Button>}
+            {!urlInput && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => handleChangeTextUrl(DEMO_URL)}
+              >
+                <FlaskConical /> <span>Try</span>
+              </Button>
+            )}
             {urlInput && (
               <Button
                 size="sm"
@@ -59,7 +69,7 @@ export const Decomposer = () => {
           URL
         </Label>
         <Textarea
-          className="mb-5 break-all"
+          className="mb-5"
           id="base-url"
           placeholder="Type any URL"
           value={urlInput}

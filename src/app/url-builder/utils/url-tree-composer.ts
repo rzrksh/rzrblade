@@ -27,8 +27,10 @@ export const updateURLTree: UpdateBaseURLAtLevel = ({
 
 export const updateURLTextInput = ({
   newUrlNode,
+  editedURLParams
 }: {
   newUrlNode: URLNode | null;
+  editedURLParams: string[]
 }) => {
   try {
     const baseUrl = new URL(newUrlNode?.baseUrl || "");
@@ -41,10 +43,12 @@ export const updateURLTextInput = ({
           (node) => node?.parentURLParam === item.key,
         );
 
-        if (childNode) {
+        if (editedURLParams.includes(item.id)) {
+          baseUrl.searchParams.append(item.key, item.value);
+        } else if (childNode) {
           baseUrl.searchParams.append(
             item.key,
-            updateURLTextInput({newUrlNode: childNode }) || "",
+            updateURLTextInput({newUrlNode: childNode, editedURLParams }) || "",
           );
         }
       } else {
