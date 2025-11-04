@@ -8,7 +8,7 @@ export const Main = () => {
       <div className="mb-6">
         <h1 className="text-4xl font-bold mb-1 text-gray-950">URL Factory</h1>
         <h2 className="text-gray-600">
-          Build and do whatever things you for URL Like a Pro.
+          Build and do whatever things you need for URL.
         </h2>
       </div>
       <div className="flex justify-between w-full mx-auto gap-4">

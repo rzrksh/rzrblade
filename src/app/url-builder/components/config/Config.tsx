@@ -44,9 +44,10 @@ export const URLComposerConfig = () => {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="compose">Compose</SelectItem>
-            <SelectItem value="encode">Encode</SelectItem>
-            <SelectItem value="decode">Decode</SelectItem>
+            <SelectItem value="compose">URL Composer</SelectItem>
+            <SelectItem value="template">Template Generator</SelectItem>
+            <SelectItem value="encode">Encoder</SelectItem>
+            <SelectItem value="decode">Decoder</SelectItem>
           </SelectContent>
         </Select>
         {config === "compose" && (

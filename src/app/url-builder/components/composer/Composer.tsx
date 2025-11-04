@@ -23,7 +23,7 @@ export const Composer = () => {
   return (
     <Card className="min-w-full">
       <CardHeader>
-        <CardTitle>Composer</CardTitle>
+        <CardTitle>URL Composer</CardTitle>
         <CardDescription>
           Turn messy, encoded URLs into human-readable data and compose your URL worry free.
         </CardDescription>

@@ -15,8 +15,8 @@ interface Props {
 
 export const EncodeDecode = ({ type }: Props) => {
   const OPERATION_NAME = {
-    encode: 'Encode',
-    decode: 'Decode',
+    encode: 'Encoder',
+    decode: 'Decoder',
   }
 
   return (
@@ -28,7 +28,9 @@ export const EncodeDecode = ({ type }: Props) => {
           you.
         </CardDescription>
       </CardHeader>
-      <CardContent></CardContent>
+      <CardContent>
+        
+      </CardContent>
     </Card>
   );
 };

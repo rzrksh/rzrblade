@@ -8,7 +8,8 @@ export const PageRenderer = () => {
   const component = {
     compose: <Composer />,
     encode: <EncodeDecode type="encode" />,
-    decode: <EncodeDecode type="decode" />
+    decode: <EncodeDecode type="decode" />,
+    template: null,
   }
 
   return component[config];
