@@ -1,6 +1,6 @@
 "use client";
 
-import { FileDown, FileUp, Save } from "lucide-react";
+import { Save } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,14 +26,14 @@ import { useConfigURL } from "./usecase/use-config-url";
 
 export const URLComposerConfig = () => {
   const { config, handleSetConfig } = useConfigURL();
-  const { handleSetUrlKeys } = useUrlComposerContext();
+  const { urlInput, handleSetUrlKeys } = useUrlComposerContext();
   const [autoDetectURL, setAutoDetectURL] = useState(true);
 
   return (
     <Card className="min-w-[25%]">
       <CardHeader>
-        <CardTitle>URL Builder Config</CardTitle>
-        <CardDescription>Change you URL Builder Config</CardDescription>
+        <CardTitle>URL Factory Config</CardTitle>
+        <CardDescription>Change you URL Factory Config</CardDescription>
       </CardHeader>
       <CardContent>
         <Label className="mb-2" htmlFor="select-ops">
@@ -45,12 +45,11 @@ export const URLComposerConfig = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="compose">Compose</SelectItem>
-            <SelectItem value="decompose">Decompose</SelectItem>
             <SelectItem value="encode">Encode</SelectItem>
             <SelectItem value="decode">Decode</SelectItem>
           </SelectContent>
         </Select>
-        {config === "decompose" && (
+        {config === "compose" && (
           <div>
             <div className="flex gap-2 my-4">
               <Checkbox
@@ -86,22 +85,10 @@ export const URLComposerConfig = () => {
         )}
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Button className="w-full">
+        <Button className="w-full" disabled={Boolean(!urlInput)}>
           <Save />
           <span>Save URL</span>
         </Button>
-        {config === "compose" && (
-          <div className="flex gap-2 w-full">
-            <Button className="flex-1/2" variant="outline">
-              <FileDown />
-              <span>Import URL JSON</span>
-            </Button>
-            <Button className="flex-1/2" variant="outline">
-              <FileUp />
-              <span>Export URL JSON</span>
-            </Button>
-          </div>
-        )}
       </CardFooter>
     </Card>
   );

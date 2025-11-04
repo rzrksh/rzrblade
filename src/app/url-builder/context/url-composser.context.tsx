@@ -30,7 +30,7 @@ const URLComposerContext = createContext<URLComposerContext>({
 export const useUrlComposerContext = () => useContext(URLComposerContext);
 
 export const URLComposerProvider = ({ children }: Props) => {
-  const [config, setConfig] = useState<ConfigType>("decompose");
+  const [config, setConfig] = useState<ConfigType>("compose");
   const [urlKeys, setUrlKeys] = useState<string[]>([]);
   const [urlInput, setUrlInput] = useState("");
   const [urlTree, setUrlTree] = useState<URLNode | null>(null);

@@ -1,1 +1,0 @@
-export { Decomposer } from './Decomposer';

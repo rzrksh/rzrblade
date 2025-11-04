@@ -1,4 +1,4 @@
-export type ConfigType = 'encode' | 'decode' | 'compose' | 'decompose';
+export type ConfigType = 'encode' | 'decode' | 'compose';
 
 export interface URLParam {
   key: string;

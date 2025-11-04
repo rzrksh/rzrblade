@@ -54,12 +54,7 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
         handleCancelChange={() => handleClickEdit("cancel")}
         handleClickEdit={() => handleClickEdit()}
         handleCollapse={handleCollapse}
-        handleCopy={() =>
-          handleCopyURL({
-            url: draftNode.url,
-            key: draftNode.parentURLParam,
-            level: draftNode.level,
-          })
+        handleCopy={() => handleCopyURL({ url: draftNode.url })
         }
         handleConfirmChange={() => handleClickEdit("confirm")}
         handleToggleShowFullURL={handleToggleShowFullURL}
