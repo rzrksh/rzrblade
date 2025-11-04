@@ -1,4 +1,4 @@
-import { Eye, Info, PlusCircle, Trash } from "lucide-react";
+import { Info, PlusCircle, Trash } from "lucide-react";
 import { AlertDialogComposed } from "@/components/composition/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

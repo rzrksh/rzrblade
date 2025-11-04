@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { v4 as uuid } from "uuid";
 import { useUrlComposerContext } from "@/app/url-builder/context/url-composser.context";
 import type { URLNode } from "@/app/url-builder/models";
+import { editedURLChecker } from "@/app/url-builder/utils/edited-url-checker";
 import { isValidURL } from "@/app/url-builder/utils/is-valid-url";
 import {
   updateURLTextInput,
@@ -28,6 +29,7 @@ export const useURLDecomposerView = ({
   const handleChangeBaseURL = ({ newBaseUrl }: { newBaseUrl: string }) => {
     if (draftNode) {
       setDraftNode({ ...draftNode, baseUrl: newBaseUrl });
+      return;
     }
   };
 
@@ -114,14 +116,9 @@ export const useURLDecomposerView = ({
     setIsEdit(!isEdit);
 
     if (action === "confirm") {
-      const editedURLParams: string[] = [];
-      const prevUrlParam = previousNode.current?.params.filter(item => item.isUrl);
-      const newUrlParam = draftNode?.params.filter(item => item.isUrl);
-
-      prevUrlParam?.forEach((_, index) => {
-        if (newUrlParam?.[index].value !== prevUrlParam[index].value) {
-          editedURLParams.push(prevUrlParam[index].id);
-        }
+      const editedURLParams = editedURLChecker({
+        newNode: draftNode,
+        previousNode: previousNode.current,
       });
 
       const newUrlNode = updateURLTree({
@@ -130,7 +127,8 @@ export const useURLDecomposerView = ({
         urlNode: draftNode,
       });
 
-      const newStringURL = updateURLTextInput({ newUrlNode, editedURLParams }) || "";
+      const newStringURL =
+        updateURLTextInput({ newUrlNode, editedURLParams }) || "";
       handleChangeTextUrl(newStringURL);
 
       toast.success("URL has been successfully changed!");
@@ -161,8 +159,11 @@ export const useURLDecomposerView = ({
     level: number;
   }) => {
     navigator.clipboard.writeText(url);
-    toast.success('URL Copied!', {
-      description: key || level ?`Key: ${level === 1 ? "root" : key}, Level: ${level}` : '',
+    toast.success("URL Copied!", {
+      description:
+        key || level
+          ? `Key: ${level === 1 ? "root" : key}, Level: ${level}`
+          : "",
     });
   };
 
