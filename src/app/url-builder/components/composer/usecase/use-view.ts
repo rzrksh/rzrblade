@@ -113,15 +113,20 @@ export const useURLDecomposerView = ({
   const handleClickEdit = (action?: "confirm" | "cancel") => {
     previousNode.current = structuredClone(urlNode);
 
-    setIsEdit(!isEdit);
+    if (!action) {
+      setIsEdit(!isEdit);
+    }
 
     if (action === "confirm") {
+      if (!isValidURL(draftNode?.baseUrl || '')) {
+        toast.error('Invalid URL, Failed to save config.');
+        return;
+      }
+
       const editedURLParams = editedURLChecker({
         newNode: draftNode,
         previousNode: previousNode.current,
       });
-
-      console.log(editedURLParams);
 
       const newUrlNode = updateURLTree({
         urlTree,
@@ -135,11 +140,13 @@ export const useURLDecomposerView = ({
 
       toast.success("URL has been successfully changed!");
       previousNode.current = structuredClone(draftNode);
+      setIsEdit(!isEdit);
       return;
     }
 
     if (action === "cancel") {
       setDraftNode(previousNode.current);
+      setIsEdit(!isEdit);
     }
   };
 

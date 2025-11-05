@@ -7,8 +7,7 @@ export const PageRenderer = () => {
 
   const component = {
     compose: <Composer />,
-    encode: <EncodeDecode type="encode" />,
-    decode: <EncodeDecode type="decode" />,
+    encdec: <EncodeDecode type="encode" />,
     template: null,
   }
 

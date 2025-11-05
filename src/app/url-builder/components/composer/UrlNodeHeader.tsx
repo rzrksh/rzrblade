@@ -83,8 +83,8 @@ export const UrlNodeHeader = ({
               variant="outline"
               onClick={handleToggleShowFullURL}
             >
-              {isShowFullUrl ? <EyeClosed /> : <Eye />}{" "}
-              <span>{isShowFullUrl ? "Hide" : "Show"} Full URL</span>
+              {isShowFullUrl ? <Eye />: <EyeClosed />}{" "}
+              <span>Full URL</span>
             </Button>
           </>
         )}

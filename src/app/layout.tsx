@@ -20,7 +20,7 @@ export default function RootLayout({
         <TooltipProvider>
           <Toaster position="top-center" />
           <Navbar />
-          <div className="pt-[56px]">{children}</div>
+          <div className="pt-[53px]">{children}</div>
           <Footer />
         </TooltipProvider>
       </body>
