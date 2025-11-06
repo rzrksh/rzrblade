@@ -49,8 +49,8 @@ export const URLComposerConfig = () => {
     <Dialog>
       <Card className="min-w-[25%]">
         <CardHeader>
-          <CardTitle>URL Factory Config</CardTitle>
-          <CardDescription>Change you URL Factory Config</CardDescription>
+          <CardTitle>URL Builder Config</CardTitle>
+          <CardDescription>Change you URL Builder Config</CardDescription>
         </CardHeader>
         <CardContent>
           <Label className="mb-2" htmlFor="select-ops">
