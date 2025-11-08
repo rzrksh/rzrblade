@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { isValidURL } from "../utils/is-valid-url";
 
 export const useSaveURL = () => {
-  const handleSaveURL = ({
+  const handleSaveNewURL = ({
     urlName,
     url,
     onError,
@@ -14,9 +14,12 @@ export const useSaveURL = () => {
     onSuccess?: () => void;
   }) => {
     if (isValidURL(url)) {
+      const savedUrl = window.localStorage.getItem('saved-url') || '';
+      const parsedSavedUrl = JSON.parse(savedUrl);
+
       window.localStorage.setItem(
         "saved-url",
-        JSON.stringify({ name: urlName, id: uuid(), url }),
+        JSON.stringify([{ name: urlName, id: uuid(), url }]),
       );
   
       if (onSuccess) {
@@ -31,5 +34,5 @@ export const useSaveURL = () => {
     }
   };
 
-  return { handleSaveURL };
+  return { handleSaveNewURL };
 }

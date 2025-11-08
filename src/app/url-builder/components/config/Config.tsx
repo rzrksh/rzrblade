@@ -37,11 +37,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useUrlComposerContext } from "../../context/url-composser.context";
+import { useSaveURL } from "../../repository/use-load-url";
 import { isValidURL } from "../../utils/is-valid-url";
 import { useConfigURL } from "./usecase/use-config-url";
 
 export const URLComposerConfig = () => {
   const { config, handleSetConfig } = useConfigURL();
+  const { handleSaveNewURL } = useSaveURL();
   const { urlInput, handleSetUrlKeys } = useUrlComposerContext();
   const [autoDetectURL, setAutoDetectURL] = useState(true);
 
@@ -62,8 +64,8 @@ export const URLComposerConfig = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="compose">URL Composer</SelectItem>
-              <SelectItem value="template">Template Generator</SelectItem>
-              <SelectItem value="encdec">Encode / Decode</SelectItem>
+              <SelectItem value="template">URL Templating</SelectItem>
+              <SelectItem value="encdec">URL Encode / URL Decode</SelectItem>
             </SelectContent>
           </Select>
           {config === "compose" && (
@@ -123,9 +125,7 @@ export const URLComposerConfig = () => {
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Save new URL</DialogTitle>
-            <DialogDescription>
-              Please name your URL
-            </DialogDescription>
+            <DialogDescription>Please name your URL</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
@@ -137,7 +137,14 @@ export const URLComposerConfig = () => {
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button type="submit">Save</Button>
+            <Button
+              type="submit"
+              onClick={() =>
+                handleSaveNewURL({ urlName: "test", url: urlInput })
+              }
+            >
+              Save
+            </Button>
           </DialogFooter>
         </DialogContent>
       </form>

@@ -220,25 +220,27 @@ function ListItem({
 
 const Navbar = () => {
   return (
-    <nav className="px-16 w-full fixed top-0 left-0 bg-white border-b z-10">
-      <div className="flex justify-between items-center">
-        <Image
-          src="/rzrblade_light.svg"
-          width={100}
-          height={17}
-          alt="rzrblade"
-        />
-        <div className="flex text-sm p-2">
-          <Button variant="ghost">Tools</Button>
-          <Button variant="ghost">About</Button>
-          <Button variant="ghost">Docs</Button>
-          <Button variant="ghost">Contribute</Button>
-          <Button variant="ghost">
-            <SunMoonIcon />
-          </Button>
+    <div className="w-full z-10 bg-white border-b fixed top-0">
+      <nav className="px-16 max-w-[var(--max-page-width)] mx-auto">
+        <div className="flex justify-between items-center">
+          <Image
+            src="/rzrblade_light.svg"
+            width={100}
+            height={17}
+            alt="rzrblade"
+          />
+          <div className="flex text-sm p-2">
+            <Button variant="ghost">Tools</Button>
+            <Button variant="ghost">About</Button>
+            <Button variant="ghost">Docs</Button>
+            <Button variant="ghost">Contribute</Button>
+            <Button variant="ghost">
+              <SunMoonIcon />
+            </Button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 

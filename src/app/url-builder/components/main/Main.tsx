@@ -4,7 +4,7 @@ import { SavedURL } from "../saved-url";
 
 export const Main = () => {
   return (
-    <main className="my-14 px-16 min-h-[100svh]">
+    <main className="mt-14 px-16 min-h-[100svh]">
       <div className="mb-6">
         <h1 className="text-4xl font-bold mb-1 text-gray-950">URL Builder</h1>
         <h2 className="text-gray-600">

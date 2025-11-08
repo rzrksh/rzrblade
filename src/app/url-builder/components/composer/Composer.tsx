@@ -21,11 +21,11 @@ export const Composer = () => {
   const { urlTree, urlInput, handleChangeTextUrl } = useUrlComposerContext();
 
   return (
-    <Card className="min-w-full">
+    <Card className="min-w-xl">
       <CardHeader>
         <CardTitle>URL Composer</CardTitle>
         <CardDescription>
-          Turn messy, encoded URLs into human-readable data and compose your URL worry free.
+          Turn messy, encoded URLs into human-readable data, compose your URL worry free.
         </CardDescription>
         <CardAction>
           <div className="flex gap-2">
