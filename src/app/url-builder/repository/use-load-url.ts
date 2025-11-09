@@ -15,17 +15,20 @@ export const useSaveURL = () => {
   }) => {
     if (isValidURL(url)) {
       const savedUrl = window.localStorage.getItem('saved-url') || '';
-      const parsedSavedUrl = JSON.parse(savedUrl);
 
-      window.localStorage.setItem(
-        "saved-url",
-        JSON.stringify([{ name: urlName, id: uuid(), url }]),
-      );
+      if (savedUrl) {
+        const parsedSavedUrl = JSON.parse(savedUrl);
   
-      if (onSuccess) {
-        onSuccess();
+        window.localStorage.setItem(
+          "saved-url",
+          JSON.stringify([{ name: urlName, id: uuid(), url }]),
+        );
+    
+        if (onSuccess) {
+          onSuccess();
+        }
       }
-  
+      
       return;
     }
   

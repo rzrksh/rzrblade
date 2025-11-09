@@ -45,7 +45,7 @@ export const URLDecomposerTree = ({ urlNode }: Props) => {
   if (!draftNode) return null;
 
   return (
-    <Card className="p-6 min-w-xl overflow-auto">
+    <Card className="p-6 min-w-[650px] overflow-auto">
       <UrlNodeHeader
         isEdit={isEdit}
         isShowFullUrl={isShowFullUrl}

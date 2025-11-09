@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 970 407" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,0,-438.014)">
-        <g id="Artboard2" transform="matrix(1.31795,0,0,1.28375,0,-236.008)">
+<svg width="100%" height="100%" viewBox="0 0 901 246" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,0,-0.324567)">
+        <g id="Artboard2" transform="matrix(1.22422,0,0,0.777172,0,-407.725)">
             <rect x="0" y="525.044" width="735.387" height="316.347" style="fill:none;"/>
-            <g transform="matrix(1.7767,0,0,1.82404,-63.8464,1544.57)">
+            <g transform="matrix(1.91273,0,0,3.01298,-113.385,2115.31)">
                 <g transform="matrix(0.345797,-0.199646,0.199646,0.345797,-101.103,-531.683)">
                     <path d="M367.15,230.047C367.884,228.776 369.24,227.993 370.707,227.993C372.174,227.993 373.529,228.776 374.263,230.047C387.423,252.841 433.617,332.851 453.361,367.048C455.229,370.284 455.229,374.272 453.361,377.508C451.492,380.745 448.039,382.739 444.302,382.739L278.994,382.739C278.994,382.739 350.264,259.294 367.15,230.047Z" style="fill:rgb(170,255,0);"/>
                 </g>
@@ -14,11 +14,11 @@
                 <g transform="matrix(0.344385,-0.19883,0.19883,0.344385,-111.389,-483.691)">
                     <path d="M373.477,219.09C371.746,222.087 371.746,225.78 373.476,228.777L386.64,251.577L386.667,251.53C386.667,251.53 420.098,304.539 432.044,323.482C434.058,326.675 434.052,330.742 432.029,333.93C431.929,334.066 431.841,334.211 431.755,334.358C428.752,339.56 430.537,346.222 435.739,349.225C437.853,350.445 440.208,350.875 442.461,350.606C446.196,350.138 449.864,351.873 451.872,355.057C459.177,366.504 473.381,389.025 473.381,389.025C475.111,392.022 475.111,395.715 473.381,398.712C471.65,401.71 468.452,403.556 464.991,403.556L405.638,403.556C402.077,403.556 398.787,401.657 397.006,398.573L333.5,301.275C331.188,297.27 331.188,292.336 333.5,288.331L373.477,219.09ZM373.477,219.09L373.785,218.556L373.802,218.566C373.688,218.736 373.58,218.911 373.477,219.09Z" style="fill:rgb(170,255,0);"/>
                 </g>
-                <g transform="matrix(5.48947,0,0,5.48947,-1451.59,-2960.06)">
-                    <g transform="matrix(12,0,0,12,342.557,457.318)">
-                    </g>
-                    <text x="289.397px" y="457.318px" style="font-family:'SpaceMono-Bold', 'Space Mono', monospace;font-weight:700;font-size:12px;fill:rgb(170,255,0);">r<tspan x="296.021px 302.645px 309.269px 315.761px 321.965px 328.589px 335.213px " y="457.318px 457.318px 457.318px 457.318px 457.318px 457.318px 457.318px ">zrblade</tspan></text>
+            </g>
+            <g transform="matrix(10.4999,0,0,16.5397,-2856.27,-6802.6)">
+                <g transform="matrix(12,0,0,12,342.557,457.318)">
                 </g>
+                <text x="289.397px" y="457.318px" style="font-family:'SpaceMono-Bold', 'Space Mono', monospace;font-weight:700;font-size:12px;fill:rgb(170,255,0);">r<tspan x="296.021px 302.645px 309.269px 315.761px 321.965px 328.589px 335.213px " y="457.318px 457.318px 457.318px 457.318px 457.318px 457.318px 457.318px ">zrblade</tspan></text>
             </g>
         </g>
     </g>

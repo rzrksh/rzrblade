@@ -12,6 +12,8 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
+import { EmptySave } from "./EmptySave";
+import { SavedURLItem } from "./SavedURLItem";
 
 export const SavedURL = () => {
   return (
@@ -19,20 +21,13 @@ export const SavedURL = () => {
       <CardHeader>
         <CardTitle>Saved URLs</CardTitle>
         <CardDescription className="mb-6">
-          Saved URL Schema. Click Save URL to add more
+          <div>Saved URL Schema. Click Save URL to add more</div>
+          <div className="mt-2 text-xs text-gray-400">
+            All saved data, is stored on your local device
+          </div>
         </CardDescription>
-        <Empty className="border border-dashed">
-          <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <Unlink />
-            </EmptyMedia>
-            <EmptyTitle>No Saved URL</EmptyTitle>
-            <EmptyDescription>
-              Save some URL to access them  easily.
-            </EmptyDescription>
-          </EmptyHeader>
-        </Empty>
-        {/* <SavedURLItem /> */}
+        <EmptySave />
+        <SavedURLItem />
       </CardHeader>
     </Card>
   );

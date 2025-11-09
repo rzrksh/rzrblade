@@ -25,7 +25,7 @@ export const Composer = () => {
       <CardHeader>
         <CardTitle>URL Composer</CardTitle>
         <CardDescription>
-          Turn messy, encoded URLs into human-readable data, compose your URL worry free.
+          Turn messy, encoded URLs into human-readable data. Compose your URL worry free.
         </CardDescription>
         <CardAction>
           <div className="flex gap-2">
@@ -69,7 +69,7 @@ export const Composer = () => {
           URL
         </Label>
         <Textarea
-          className="mb-5"
+          className="mb-5 min-h-40"
           id="base-url"
           placeholder="Type any URL"
           value={urlInput}

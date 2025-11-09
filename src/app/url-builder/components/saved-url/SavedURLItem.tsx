@@ -1,4 +1,4 @@
-import { CircleX, FileUp } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -20,10 +20,7 @@ export const SavedURLItem = () => {
       </ItemContent>
       <ItemActions>
         <Button variant="outline" size="sm">
-          <FileUp />
-        </Button>
-        <Button variant="outline" className="border-red-100" size="sm">
-          <CircleX className="text-red-500" />
+          <Ellipsis />
         </Button>
       </ItemActions>
     </Item>

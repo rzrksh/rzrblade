@@ -223,16 +223,18 @@ const Navbar = () => {
     <div className="w-full z-10 bg-white border-b fixed top-0">
       <nav className="px-16 max-w-[var(--max-page-width)] mx-auto">
         <div className="flex justify-between items-center">
-          <Image
-            src="/rzrblade_light.svg"
-            width={100}
-            height={17}
-            alt="rzrblade"
-          />
+          <Link href="/">
+            <Image
+              src="/rzrblade-light-mode.svg"
+              width={100}
+              height={17}
+              draggable={false}
+              alt="rzrblade"
+            />
+          </Link>
           <div className="flex text-sm p-2">
             <Button variant="ghost">Tools</Button>
             <Button variant="ghost">About</Button>
-            <Button variant="ghost">Docs</Button>
             <Button variant="ghost">Contribute</Button>
             <Button variant="ghost">
               <SunMoonIcon />
