@@ -1,7 +1,7 @@
 'use client'
 
 import { Main } from "./components/main";
-import { URLComposerProvider } from "./context/url-composser.context";
+import { URLComposerProvider } from "./context/url-builder.context";
 
 const URLComposserPage = () => {
   return (

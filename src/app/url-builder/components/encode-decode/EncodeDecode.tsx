@@ -1,6 +1,7 @@
 "use client";
 
-import { CircleX } from "lucide-react";
+import { CircleX, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,21 +20,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useUrlComposerContext } from "../../context/url-composser.context";
+import { useUrlBuilderContext } from "../../context/url-builder.context";
 import { type OperationType, useView } from "./usecase/use-view";
 
-interface Props {
-  type: "encode" | "decode";
-}
+const OPERATION_NAME = {
+  encode: "Encoder",
+  decode: "Decoder",
+};
 
-export const EncodeDecode = ({ type }: Props) => {
-  const { urlInput, handleChangeTextUrl } = useUrlComposerContext();
+const URL_RESULT_NAME = {
+  encode: "Encoded",
+  decode: "Decoded",
+};
+
+export const EncodeDecode = () => {
+  const { urlInput, handleChangeTextUrl } = useUrlBuilderContext();
   const { operation, handleChangeOperation } = useView();
-
-  const OPERATION_NAME = {
-    encode: "Encoder",
-    decode: "Decoder",
-  };
 
   return (
     <Card className="min-w-full">
@@ -78,15 +80,32 @@ export const EncodeDecode = ({ type }: Props) => {
           URL
         </Label>
         <Textarea
-          className="mb-5 min-h-40"
+          className="mb-8 min-h-40"
           id="base-url"
           placeholder="Type any URL"
           value={urlInput}
           onChange={(e) => handleChangeTextUrl(e.target.value)}
         />
-        <Label className="mb-2" htmlFor="result-url">
-          {operation === "encode" ? "Encoded" : "Decoded"} URL
-        </Label>
+        <div className="flex gap-2 items-center justify-between mb-2">
+          <Label htmlFor="result-url">
+            {URL_RESULT_NAME[operation]} URL
+          </Label>
+          {urlInput && (
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => {
+                navigator.clipboard.writeText(urlInput);
+                toast.success(`${URL_RESULT_NAME[operation]} URL Copied!`);
+              }}
+            >
+              <Copy />{" "}
+              <span>
+                Copy {URL_RESULT_NAME[operation]} URL
+              </span>
+            </Button>
+          )}
+        </div>
         <Textarea
           className="mb-5 min-h-40"
           id="result-url"

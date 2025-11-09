@@ -13,12 +13,12 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useUrlComposerContext } from "../../context/url-composser.context";
+import { useUrlBuilderContext } from "../../context/url-builder.context";
 import { DEMO_URL } from "../../models/demo-url";
 import { URLDecomposerTree } from "./UrlDecomposerTree";
 
 export const Composer = () => {
-  const { urlTree, urlInput, handleChangeTextUrl } = useUrlComposerContext();
+  const { urlTree, urlInput, handleChangeTextUrl } = useUrlBuilderContext();
 
   return (
     <Card className="min-w-xl">

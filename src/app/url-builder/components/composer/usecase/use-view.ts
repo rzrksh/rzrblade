@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { v4 as uuid } from "uuid";
-import { useUrlComposerContext } from "@/app/url-builder/context/url-composser.context";
+import { useUrlBuilderContext } from "@/app/url-builder/context/url-builder.context";
 import type { URLNode } from "@/app/url-builder/models";
 import { editedURLChecker } from "@/app/url-builder/utils/edited-url-checker";
 import { isValidURL } from "@/app/url-builder/utils/is-valid-url";
@@ -19,7 +19,7 @@ export const useURLDecomposerView = ({
   const [isShowFullUrl, setIsShowFullUrl] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [draftNode, setDraftNode] = useState(urlNode);
-  const { urlTree, handleChangeTextUrl } = useUrlComposerContext();
+  const { urlTree, handleChangeTextUrl } = useUrlBuilderContext();
   const previousNode = useRef<URLNode | null>(null);
 
   useEffect(() => {

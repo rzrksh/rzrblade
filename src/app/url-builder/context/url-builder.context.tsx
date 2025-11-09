@@ -27,7 +27,7 @@ const URLComposerContext = createContext<URLComposerContext>({
   handleSetUrlKeys: () => {},
 });
 
-export const useUrlComposerContext = () => useContext(URLComposerContext);
+export const useUrlBuilderContext = () => useContext(URLComposerContext);
 
 export const URLComposerProvider = ({ children }: Props) => {
   const [config, setConfig] = useState<ConfigType>("compose");

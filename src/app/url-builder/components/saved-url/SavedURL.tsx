@@ -1,19 +1,11 @@
-import { Unlink } from "lucide-react";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
 import { EmptySave } from "./EmptySave";
-import { SavedURLItem } from "./SavedURLItem";
+// import { SavedURLItem } from "./SavedURLItem";
 
 export const SavedURL = () => {
   return (
@@ -27,7 +19,7 @@ export const SavedURL = () => {
           </div>
         </CardDescription>
         <EmptySave />
-        <SavedURLItem />
+        {/* <SavedURLItem /> */}
       </CardHeader>
     </Card>
   );

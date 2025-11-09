@@ -36,7 +36,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useUrlComposerContext } from "../../context/url-composser.context";
+import { useUrlBuilderContext } from "../../context/url-builder.context";
 import { useSaveURL } from "../../repository/use-load-url";
 import { isValidURL } from "../../utils/is-valid-url";
 import { useConfigURL } from "./usecase/use-config-url";
@@ -44,7 +44,7 @@ import { useConfigURL } from "./usecase/use-config-url";
 export const URLComposerConfig = () => {
   const { config, handleSetConfig } = useConfigURL();
   const { handleSaveNewURL } = useSaveURL();
-  const { urlInput, handleSetUrlKeys } = useUrlComposerContext();
+  const { urlInput, handleSetUrlKeys } = useUrlBuilderContext();
   const [autoDetectURL, setAutoDetectURL] = useState(true);
 
   return (

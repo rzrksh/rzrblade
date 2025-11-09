@@ -28,8 +28,8 @@ const Home = () => {
         </div>
         <div className="flex justify-center">
           <Button size="lg" className="mx-auto">
-            <span>Try rzrblade</span>
             <ExternalLink />
+            <span>Try rzrblade</span>
           </Button>
         </div>
       </div>
@@ -60,11 +60,12 @@ const Home = () => {
           </Card>
           <Card className="p-6 w-full">
             <CardTitle className="flex items-center gap-2">
-              <span>Constantly Maintained</span>
+              <span>Robust and Constantly Maintained</span>
               <Wrench width={15} height={15} />
             </CardTitle>
             <CardDescription>
-              Always up to date, polished, and ready to help.
+              Always up to date, polished, and ready to help. We also try to
+              make the tools as robust as possible.
             </CardDescription>
           </Card>
         </div>

@@ -1,6 +1,8 @@
 import { Unlink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Empty,
+  EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
@@ -19,6 +21,9 @@ export const EmptySave = () => {
           Save some URL to access them easily.
         </EmptyDescription>
       </EmptyHeader>
+      <EmptyContent>
+        <Button variant="outline">Import Save</Button>
+      </EmptyContent>
     </Empty>
   );
 };

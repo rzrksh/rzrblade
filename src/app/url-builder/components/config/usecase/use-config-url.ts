@@ -1,7 +1,7 @@
-import { useUrlComposerContext } from "@/app/url-builder/context/url-composser.context";
+import { useUrlBuilderContext } from "@/app/url-builder/context/url-builder.context";
 
 export const useConfigURL = () => {
-  const { config, handleSetConfig } = useUrlComposerContext();
+  const { config, handleSetConfig } = useUrlBuilderContext();
 
   return { handleSetConfig, config };
 };
