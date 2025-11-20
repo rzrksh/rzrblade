@@ -1,5 +1,5 @@
 import type React from "react";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import type { ConfigType, URLNode } from "../models";
 import { urlTreeGenerator } from "../utils/url-tree-generator";
 
@@ -8,6 +8,7 @@ interface Props {
 }
 
 interface URLComposerContext {
+  autoDetectURL: boolean;
   config: ConfigType;
   urlInput: string;
   urlKeys: string[];
@@ -15,9 +16,11 @@ interface URLComposerContext {
   handleChangeTextUrl: (urlInput: string) => void;
   handleSetConfig: (configType: ConfigType) => void;
   handleSetUrlKeys: (urlKeysString: string) => void;
+  handleToggleAutoDetectURL: () => void;
 }
 
 const URLComposerContext = createContext<URLComposerContext>({
+  autoDetectURL: true,
   config: "compose",
   urlInput: "",
   urlKeys: [],
@@ -25,6 +28,7 @@ const URLComposerContext = createContext<URLComposerContext>({
   handleChangeTextUrl: () => {},
   handleSetConfig: () => {},
   handleSetUrlKeys: () => {},
+  handleToggleAutoDetectURL: () => {},
 });
 
 export const useUrlBuilderContext = () => useContext(URLComposerContext);
@@ -34,6 +38,7 @@ export const URLComposerProvider = ({ children }: Props) => {
   const [urlKeys, setUrlKeys] = useState<string[]>([]);
   const [urlInput, setUrlInput] = useState("");
   const [urlTree, setUrlTree] = useState<URLNode | null>(null);
+  const [autoDetectURL, setAutoDetectURL] = useState(true);
 
   const handleSetConfig = (configType: ConfigType) => {
     setConfig(configType);
@@ -42,32 +47,34 @@ export const URLComposerProvider = ({ children }: Props) => {
   const handleSetUrlKeys = (urlKeysString: string) => {
     if (!urlKeysString) {
       setUrlKeys([]);
-
-      const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys: [] });
-      setUrlTree(generatedUrlTree);
       return;
     }
 
     const splitedKeys = urlKeysString.split(",");
-
     setUrlKeys(splitedKeys);
-    const generatedUrlTree = urlTreeGenerator({
-      urlInput,
-      urlKeys: splitedKeys,
-    });
-
-    setUrlTree(generatedUrlTree);
   };
 
   const handleChangeTextUrl = (urlInput: string) => {
     setUrlInput(urlInput);
-    const generatedUrlTree = urlTreeGenerator({ urlInput, urlKeys });
-    setUrlTree(generatedUrlTree);
   };
+
+  const handleToggleAutoDetectURL = () => {
+    setAutoDetectURL(!autoDetectURL);
+  };
+
+  useEffect(() => {
+    const generatedUrlTree = urlTreeGenerator({
+      urlInput,
+      urlKeys,
+      autoDetectURL,
+    });
+    setUrlTree(generatedUrlTree);
+  }, [urlInput, urlKeys, autoDetectURL]);
 
   return (
     <URLComposerContext.Provider
       value={{
+        autoDetectURL,
         config,
         urlInput,
         urlKeys,
@@ -75,6 +82,7 @@ export const URLComposerProvider = ({ children }: Props) => {
         handleChangeTextUrl,
         handleSetConfig,
         handleSetUrlKeys,
+        handleToggleAutoDetectURL,
       }}
     >
       {children}

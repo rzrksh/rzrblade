@@ -13,9 +13,9 @@ export const SavedURL = () => {
       <CardHeader>
         <CardTitle>Saved URLs</CardTitle>
         <CardDescription className="mb-6">
-          <div>Saved URL Schema. Click Save URL to add more</div>
+          <div>Saved URL Schema. Click Save URL above to add more.</div>
           <div className="mt-2 text-xs text-gray-400">
-            All saved data, is stored on your local device
+            All saved data is stored on your local device.
           </div>
         </CardDescription>
         <EmptySave />

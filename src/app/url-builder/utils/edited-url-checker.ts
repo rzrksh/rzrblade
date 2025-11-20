@@ -11,8 +11,6 @@ export const editedURLChecker = ({
   const prevUrlParams = previousNode?.params.filter((item) => item.isUrl);
   const newUrlParams = newNode?.params.filter((item) => item.isUrl);
 
-  console.log(prevUrlParams, newUrlParams);
-
   newUrlParams?.forEach((newParam) => {
     const editedKey = prevUrlParams?.find(
       (prevParam) => prevParam.value !== newParam.value,

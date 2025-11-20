@@ -220,7 +220,7 @@ function ListItem({
 
 const Navbar = () => {
   return (
-    <div className="w-full z-10 bg-white border-b fixed top-0">
+    <header className="w-full z-10 bg-white border-b fixed top-0">
       <nav className="px-16 max-w-[var(--max-page-width)] mx-auto">
         <div className="flex justify-between items-center">
           <Link href="/">
@@ -242,7 +242,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
 

@@ -35,7 +35,7 @@ const Home = () => {
       </div>
       <div>
         <div className="text-center text-2xl font-bold">
-          Why rzrblade you ask?
+          Why rzrblade?
         </div>
         <div className="flex gap-2 mt-8">
           <Card className="p-6 w-full">
