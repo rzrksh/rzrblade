@@ -13,11 +13,9 @@ export const URLTemplating = () => {
       <CardHeader>
         <CardTitle>URL Templating</CardTitle>
         <CardDescription>
-          Craft your URLs easily with a URL composer, we handle the encoding for
-          you.
+          Create templates of URL, serve make variants based on the template.
         </CardDescription>
       </CardHeader>
-
     </Card>
   );
 };

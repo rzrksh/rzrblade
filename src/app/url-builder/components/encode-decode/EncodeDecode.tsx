@@ -42,8 +42,7 @@ export const EncodeDecode = () => {
       <CardHeader>
         <CardTitle>{OPERATION_NAME[operation]}</CardTitle>
         <CardDescription>
-          Craft your URLs easily with a URL composer, we handle the encoding for
-          you.
+          A simple URL encode / decoder that uses UTF-8
         </CardDescription>
         <CardAction>
           <div className="flex gap-2">
@@ -87,9 +86,7 @@ export const EncodeDecode = () => {
           onChange={(e) => handleChangeTextUrl(e.target.value)}
         />
         <div className="flex gap-2 items-center justify-between mb-2">
-          <Label htmlFor="result-url">
-            {URL_RESULT_NAME[operation]} URL
-          </Label>
+          <Label htmlFor="result-url">{URL_RESULT_NAME[operation]} URL</Label>
           {urlInput && (
             <Button
               size="sm"
@@ -99,10 +96,7 @@ export const EncodeDecode = () => {
                 toast.success(`${URL_RESULT_NAME[operation]} URL Copied!`);
               }}
             >
-              <Copy />{" "}
-              <span>
-                Copy {URL_RESULT_NAME[operation]} URL
-              </span>
+              <Copy /> <span>Copy {URL_RESULT_NAME[operation]} URL</span>
             </Button>
           )}
         </div>
