@@ -36,6 +36,10 @@ const URL_RESULT_NAME = {
 export const EncodeDecode = () => {
   const { urlInput, handleChangeTextUrl } = useUrlBuilderContext();
   const { operation, handleChangeOperation } = useView();
+  const result =
+    operation === "encode"
+      ? encodeURIComponent(urlInput)
+      : decodeURIComponent(urlInput);
 
   return (
     <Card className="min-w-full">
@@ -92,7 +96,7 @@ export const EncodeDecode = () => {
               size="sm"
               variant="outline"
               onClick={() => {
-                navigator.clipboard.writeText(urlInput);
+                navigator.clipboard.writeText(result);
                 toast.success(`${URL_RESULT_NAME[operation]} URL Copied!`);
               }}
             >
@@ -104,11 +108,7 @@ export const EncodeDecode = () => {
           className="mb-5 min-h-40"
           id="result-url"
           readOnly
-          value={
-            operation === "encode"
-              ? encodeURIComponent(urlInput)
-              : decodeURIComponent(urlInput)
-          }
+          value={result}
         />
       </CardContent>
     </Card>

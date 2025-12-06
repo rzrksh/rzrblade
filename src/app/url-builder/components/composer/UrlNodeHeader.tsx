@@ -39,19 +39,25 @@ export const UrlNodeHeader = ({
   handleToggleShowFullURL,
 }: Props) => {
   return (
-    <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2">
+    <div className="flex items-center justify-between bg-gray-50 dark:bg-[var(--header-section)] rounded-xl p-2">
       <div className="flex gap-2 items-center">
         <Button variant="ghost" className="w-[40px]" onClick={handleCollapse}>
           {collapsed ? <ListChevronsUpDown /> : <ListChevronsDownUp />}
         </Button>
         <Label>
           {draftNode.level && (
-            <Badge className="bg-gray-200" variant="secondary">
+            <Badge
+              className="bg-gray-200 dark:bg-lime-400 dark:text-black"
+              variant="secondary"
+            >
               URL Level {draftNode.level}
             </Badge>
           )}
 
-          <Badge className="bg-gray-200" variant="secondary">
+          <Badge
+            className="bg-gray-200 dark:bg-lime-400 dark:text-black"
+            variant="secondary"
+          >
             {draftNode.level === 1
               ? "root"
               : `Parent Key: ${draftNode.parentURLParam}`}
@@ -83,8 +89,7 @@ export const UrlNodeHeader = ({
               variant="outline"
               onClick={handleToggleShowFullURL}
             >
-              {isShowFullUrl ? <Eye />: <EyeClosed />}{" "}
-              <span>Full URL</span>
+              {isShowFullUrl ? <Eye /> : <EyeClosed />} <span>Full URL</span>
             </Button>
           </>
         )}

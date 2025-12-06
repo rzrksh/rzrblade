@@ -110,8 +110,8 @@ export const URLComposerConfig = () => {
           <Save />
           <span>Save new URL</span>
         </Button>
+        <DialogSave show={showDialogSave} closeDialog={handleCloseDialogSave} />
       </CardFooter>
-      <DialogSave show={showDialogSave} closeDialog={handleCloseDialogSave} />
     </Card>
   );
 };

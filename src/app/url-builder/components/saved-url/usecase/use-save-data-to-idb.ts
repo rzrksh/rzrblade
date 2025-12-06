@@ -16,8 +16,6 @@ export function useIndexedDB<T extends Record<string, any>>({
   const [db, setDb] = useState<IDBDatabase | null>(null);
   const [data, setData] = useState<T[]>([]);
 
-  console.log(data);
-
   useEffect(() => {
     const request = indexedDB.open(dbName, version);
 

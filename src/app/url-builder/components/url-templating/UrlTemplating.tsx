@@ -13,7 +13,7 @@ export const URLTemplating = () => {
       <CardHeader>
         <CardTitle>URL Templating</CardTitle>
         <CardDescription>
-          Create templates of URL, serve make variants based on the template.
+          Create templates of URL, make variants based on the template.
         </CardDescription>
       </CardHeader>
     </Card>

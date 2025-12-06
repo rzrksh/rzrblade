@@ -1,9 +1,5 @@
-import Navbar from "@/components/composition/navbar";
 import "./globals.css";
-import Footer from "@/components/composition/footer";
-// import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "rzrblade - Dev Super Toolbox",
@@ -18,21 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        {/* <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        > */}
-          <TooltipProvider>
-            <Toaster position="top-center" />
-            <Navbar />
-            <div className="py-[53px] max-w-[var(--max-page-width)] mx-auto">
-              {children}
-            </div>
-            <Footer />
-          </TooltipProvider>
-        {/* </ThemeProvider> */}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
