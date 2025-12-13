@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { v4 as uuid } from "uuid";
-import { useUrlBuilderContext } from "@/app/url-builder/context/url-builder.context";
-import type { URLNode } from "@/app/url-builder/models";
-import { editedURLChecker } from "@/app/url-builder/utils/edited-url-checker";
-import { isValidURL } from "@/app/url-builder/utils/is-valid-url";
+import { useUrlBuilderContext } from "@/features/url-builder/context/url-builder.context";
+import type { URLNode } from "@/features/url-builder/models";
+import { editedURLChecker } from "@/features/url-builder/utils/edited-url-checker";
+import { isValidURL } from "@/features/url-builder/utils/is-valid-url";
 import {
   updateURLTextInput,
   updateURLTree,
-} from "@/app/url-builder/utils/url-tree-composer";
+} from "@/features/url-builder/utils/url-tree-composer";
 
 export const useURLDecomposerView = ({
   urlNode,
@@ -118,8 +118,8 @@ export const useURLDecomposerView = ({
     }
 
     if (action === "confirm") {
-      if (!isValidURL(draftNode?.baseUrl || '')) {
-        toast.error('Invalid URL, Failed to save config.');
+      if (!isValidURL(draftNode?.baseUrl || "")) {
+        toast.error("Invalid URL, Failed to save config.");
         return;
       }
 
@@ -158,14 +158,10 @@ export const useURLDecomposerView = ({
     setIsShowFullUrl(!isShowFullUrl);
   };
 
-  const handleCopyURL = ({
-    url,
-  }: {
-    url: string;
-  }) => {
+  const handleCopyURL = ({ url }: { url: string }) => {
     navigator.clipboard.writeText(url);
     toast.success("URL Copied!", {
-      description: `${url.substring(0, 35)}${url.length > 35 ? '...' : ''}`
+      description: `${url.substring(0, 35)}${url.length > 35 ? "..." : ""}`,
     });
   };
 

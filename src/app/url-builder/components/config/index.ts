@@ -1,1 +1,0 @@
-export { URLComposerConfig } from './Config'
