@@ -34,38 +34,6 @@ const Home = () => {
         </div>
       </div>
       <div className="mb-16">
-        <div className="text-center text-2xl font-bold">rzrblade Tools</div>
-        <div className="flex gap-2 mt-4">
-          <Card className="p-6 w-full">
-            <CardTitle className="flex items-center gap-2">
-              <span>URL Builder</span>
-            </CardTitle>
-            <CardDescription>
-              Yep! You heard that right, it is free and and it always be. But as
-              always, a couple of bucks for coffee is great!
-            </CardDescription>
-          </Card>
-          <Card className="p-6 w-full">
-            <CardTitle className="flex items-center gap-2">
-              <span>JSON Builder</span>
-            </CardTitle>
-            <CardDescription>
-              Made for devs, by devs. Fork it, improve it, and let's build
-              something sharper, together.
-            </CardDescription>
-          </Card>
-          <Card className="p-6 w-full">
-            <CardTitle className="flex items-center gap-2">
-              <span>Hashing and Encryption</span>
-            </CardTitle>
-            <CardDescription>
-              Always up to date, polished, and ready to help. We also try to
-              make the tools as robust as possible.
-            </CardDescription>
-          </Card>
-        </div>
-      </div>
-      <div className="mb-16">
         <div className="text-center text-2xl font-bold">Why rzrblade?</div>
         <div className="flex gap-2 mt-4">
           <Card className="p-6 w-full">

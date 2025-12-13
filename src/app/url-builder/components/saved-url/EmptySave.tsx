@@ -22,7 +22,7 @@ export const EmptySave = () => {
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
-        <Button variant="outline">Import Save</Button>
+        <Button variant="outline">Import</Button>
       </EmptyContent>
     </Empty>
   );
