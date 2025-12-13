@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Main } from "./components/main";
-import { URLComposerProvider } from "./context/url-builder.context";
+import URLComposser from "@/features/url-builder";
 
 export const metadata: Metadata = {
   title: "URL Builder | rzrblade",
 };
 
 const URLComposserPage = () => {
-  return (
-    <URLComposerProvider>
-      <Main />
-    </URLComposerProvider>
-  );
+  return <URLComposser />;
 };
 
 export default URLComposserPage;
