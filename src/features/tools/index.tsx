@@ -3,25 +3,27 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 
-export const Home = () => {
+const Home = () => {
   return (
-    <main className="px-16">
-      <div className="mt-8 mb-20">
+    <main className="mt-12 px-16 min-h-[100svh]">
+      <div className="mb-16">
         <Image
-          src="/rzrblade-emblem-dark.svg"
+          src="https://placehold.co/300"
           width={300}
           height={300}
-          alt="rzrblade logo"
+          alt=""
           className="mx-auto mb-6"
+          unoptimized
         />
-        <div className="mx-[10%] text-center">
-          <h1 className="text-8xl font-bold mb-6">
-            Your development super toolbox
-          </h1>
-          <p className="text-gray-500 text-xl mb-20">
-            All-in-one toolkit for development to make your day easier.
+        <div className="mx-[20%] text-center mb-4">
+          <h1 className="text-6xl font-bold mb-12">
+            Your dev super-toolbox
             <br />
-            Test, inspect, and simplify everyday tasks.
+            Built to save your sanity
+          </h1>
+          <p className="text-gray-500">
+            Your all-in-one toolkit to build, debug, and ship faster.
+            <br />A single hub to make every dev day smoother.
           </p>
         </div>
         <div className="flex justify-center">

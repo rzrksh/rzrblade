@@ -51,13 +51,13 @@ const Navbar = () => {
             )}
           </Link>
           <div className="flex text-sm p-2 gap-6 items-center">
-            <Link href="./#" className="inline-block">
+            <Link href="/tools" className="inline-block">
               Tools
             </Link>
-            <Link href="./#" className="inline-block">
+            <Link href="/about" className="inline-block">
               About
             </Link>
-            <Link href="./#" className="inline-block">
+            <Link href="/" className="inline-block">
               Contribute
             </Link>
             <div className="min-h-[36px] min-w-[66px] mr-1">
