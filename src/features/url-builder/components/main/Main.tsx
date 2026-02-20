@@ -1,6 +1,6 @@
 import { URLComposerConfig } from "../config";
 import { PageRenderer } from "../page-renderer";
-import { SavedURL } from "../saved-url";
+// import { SavedURL } from "../saved-url";
 
 export const Main = () => {
   return (
@@ -19,9 +19,9 @@ export const Main = () => {
         </div>
         <div className="min-w-[calc(35%-theme(space.2))]">
           <URLComposerConfig />
-          <div className="mt-4">
+          {/* <div className="mt-4">
             <SavedURL />
-          </div>
+          </div> */}
         </div>
       </div>
     </main>

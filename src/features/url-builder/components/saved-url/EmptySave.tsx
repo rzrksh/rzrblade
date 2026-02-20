@@ -22,7 +22,10 @@ export const EmptySave = () => {
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
-        <Button variant="outline">Import</Button>
+        <div className="flex gap-2">
+          <Button variant="default">Save</Button>
+          <Button variant="outline">Import</Button>
+        </div>
       </EmptyContent>
     </Empty>
   );

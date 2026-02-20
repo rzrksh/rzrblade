@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import type { BasicThemeType } from "@/types/global.types";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
 
-type BasicThemeType = "light" | "dark";
 type ThemeType = "system" | BasicThemeType;
 
 const themeIcon = {

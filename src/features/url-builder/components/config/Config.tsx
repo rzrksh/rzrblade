@@ -59,7 +59,7 @@ export const URLComposerConfig = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="compose">URL Composer</SelectItem>
-            <SelectItem value="template">URL Templating</SelectItem>
+            {/* <SelectItem value="template">URL Templating</SelectItem> */}
             <SelectItem value="encdec">URL Encode / URL Decode</SelectItem>
           </SelectContent>
         </Select>
@@ -101,17 +101,6 @@ export const URLComposerConfig = () => {
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          className="w-full"
-          disabled={!isValidURL(urlInput)}
-          onClick={handleOpenDialogSave}
-        >
-          <Save />
-          <span>Save new URL</span>
-        </Button>
-        <DialogSave show={showDialogSave} closeDialog={handleCloseDialogSave} />
-      </CardFooter>
     </Card>
   );
 };
