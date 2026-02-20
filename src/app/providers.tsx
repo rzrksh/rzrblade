@@ -1,8 +1,7 @@
 "use client";
 
-import Navbar from "@/components/composition/navbar";
-import "./globals.css";
 import Footer from "@/components/composition/footer";
+import Navbar from "@/components/composition/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";

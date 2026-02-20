@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import type { BasicThemeType } from "@/types/global.types";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
 
-type BasicThemeType = "light" | "dark";
 type ThemeType = "system" | BasicThemeType;
 
 const themeIcon = {
@@ -51,13 +51,13 @@ const Navbar = () => {
             )}
           </Link>
           <div className="flex text-sm p-2 gap-6 items-center">
-            <Link href="./#" className="inline-block">
+            <Link href="/tools" className="inline-block">
               Tools
             </Link>
-            <Link href="./#" className="inline-block">
+            <Link href="/about" className="inline-block">
               About
             </Link>
-            <Link href="./#" className="inline-block">
+            <Link href="/" className="inline-block">
               Contribute
             </Link>
             <div className="min-h-[36px] min-w-[66px] mr-1">

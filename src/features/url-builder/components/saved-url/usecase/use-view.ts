@@ -10,6 +10,7 @@ export const useView = ({ closeDialog }: Props) => {
   const [error, setError] = useState("");
 
   const handleSaveNewURL = () => {
+    console.log("===urlanem", urlName);
     if (!isValidNameScheme(urlName)) {
       return;
     }

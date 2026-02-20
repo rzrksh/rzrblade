@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { isValidNameScheme } from "@/utils/is-valid-name";
 import { useUrlBuilderContext } from "../../context/url-builder.context";
-import { useIndexedDB } from "./usecase/use-save-data-to-idb";
 import { useView } from "./usecase/use-view";
 
 interface Props {
