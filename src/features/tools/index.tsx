@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 
-const Home = () => {
+const Tools = () => {
   return (
     <main className="mt-12 px-16 min-h-[100svh]">
       <div className="mb-16">
@@ -72,4 +72,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Tools;
