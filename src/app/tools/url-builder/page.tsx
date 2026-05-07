@@ -6,7 +6,11 @@ export const metadata: Metadata = {
 };
 
 const URLComposserPage = () => {
-  return <URLComposser />;
+  return (
+    <div className="py-[53px] max-w-[var(--max-page-width)] mx-auto">
+      <URLComposser />
+    </div>
+  );
 };
 
 export default URLComposserPage;

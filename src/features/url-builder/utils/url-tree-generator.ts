@@ -5,7 +5,7 @@ import { isValidURL } from "./is-valid-url";
 interface Args {
   urlInput: string;
   urlKeys: string[];
-  autoDetectURL?: boolean;
+  autoDetectURL: boolean;
   level?: number;
   parentURLParam?: string;
 }
@@ -15,7 +15,7 @@ export const urlTreeGenerator = ({
   urlKeys = [],
   level = 1,
   parentURLParam = "",
-  autoDetectURL = true,
+  autoDetectURL,
 }: Args) => {
   if (!isValidURL(urlInput)) {
     return null;
@@ -37,6 +37,7 @@ export const urlTreeGenerator = ({
               urlKeys,
               level: level + 1,
               parentURLParam: key,
+              autoDetectURL,
             }),
           );
         } else {

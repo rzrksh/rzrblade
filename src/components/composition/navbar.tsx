@@ -3,12 +3,9 @@
 import { MoonIcon, SunIcon, SunMoonIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import type { BasicThemeType } from "@/types/global.types";
+import { useAppThemeContext } from "@/app/context/theme";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
-
-type ThemeType = "system" | BasicThemeType;
 
 const themeIcon = {
   system: <SunMoonIcon />,
@@ -22,12 +19,8 @@ const logo = {
 };
 
 const Navbar = () => {
-  const { theme = "system", systemTheme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
-
-  const handleChangeTheme = (config: ThemeType) => {
-    setTheme(config);
-  };
+  const { theme, handleChangeTheme } = useAppThemeContext();
 
   useEffect(() => setIsMounted(true), []);
 
@@ -38,11 +31,7 @@ const Navbar = () => {
           <Link href="/">
             {isMounted && (
               <Image
-                src={
-                  theme === "system"
-                    ? logo[systemTheme || "dark"]
-                    : logo[theme as BasicThemeType]
-                }
+                src={logo[theme]}
                 width={100}
                 height={17}
                 draggable={false}
@@ -63,7 +52,7 @@ const Navbar = () => {
             <div className="min-h-[36px] min-w-[66px] mr-1">
               {isMounted && (
                 <Select defaultValue={theme} onValueChange={handleChangeTheme}>
-                  <SelectTrigger>{themeIcon[theme as ThemeType]}</SelectTrigger>
+                  <SelectTrigger>{themeIcon[theme]}</SelectTrigger>
                   <SelectContent>
                     <SelectItem value="system">
                       <SunMoonIcon /> System

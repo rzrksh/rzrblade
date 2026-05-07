@@ -6,7 +6,11 @@ export const metadata: Metadata = {
 };
 
 const JSONBuilderPage = () => {
-  return <JSONBuilder />;
+  return (
+    <div className="pt-[52px] pb-[24px] max-w-[var(--max-page-width)] mx-auto">
+      <JSONBuilder />
+    </div>
+  );
 };
 
 export default JSONBuilderPage;

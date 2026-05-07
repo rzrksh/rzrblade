@@ -1,12 +1,11 @@
 "use client";
 
-import { Info, Save } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Info } from "lucide-react";
+import TooltipWrapper from "@/components/composition/tooltip";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -20,24 +19,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { useUrlBuilderContext } from "../../context/url-builder.context";
-import { isValidURL } from "../../utils/is-valid-url";
-import DialogSave from "../saved-url/DialogSave";
-import { useView } from "./usecase/use-view";
 
 export const URLComposerConfig = () => {
-  const { showDialogSave, handleCloseDialogSave, handleOpenDialogSave } =
-    useView();
-
   const {
     config,
     autoDetectURL,
-    urlInput,
     handleSetUrlKeys,
     handleSetConfig,
     handleToggleAutoDetectURL,
@@ -74,15 +61,12 @@ export const URLComposerConfig = () => {
               <Label htmlFor="auto-detect-url-check">
                 Automatically Detects URL
               </Label>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info width={15} height={15} />
-                </TooltipTrigger>
-                <TooltipContent>
-                  Automatically generates a new URL tree when a parameter
-                  contains a valid URL.
-                </TooltipContent>
-              </Tooltip>
+              <TooltipWrapper
+                tooltipText="Automatically generates a new URL tree when a parameter
+                  contains a valid URL."
+              >
+                <Info width={15} height={15} />
+              </TooltipWrapper>
             </div>
             {!autoDetectURL && (
               <div className="mt-4 w-full">

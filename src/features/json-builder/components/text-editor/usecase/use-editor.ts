@@ -8,6 +8,22 @@ export default function useEditor() {
   const [beautified, setBeautified] = useState("");
   const metaRef = useRef<DecodeMeta[]>([]);
 
+  const handleCopyRawText = () => {
+    navigator.clipboard.writeText(raw);
+  };
+
+  const handleClearRawText = async () => {
+    setRaw("");
+  };
+
+  const handleCopyBeautifiedText = () => {
+    navigator.clipboard.writeText(beautified);
+  };
+
+  const handleClearBeautifiedText = async () => {
+    setBeautified("");
+  };
+
   useEffect(() => {
     try {
       const parsed = JSON.parse(raw);
@@ -28,5 +44,14 @@ export default function useEditor() {
     } catch {}
   };
 
-  return { beautified, raw, onBeautifiedChange, setRaw };
+  return {
+    beautified,
+    raw,
+    onBeautifiedChange,
+    setRaw,
+    handleCopyRawText,
+    handleCopyBeautifiedText,
+    handleClearRawText,
+    handleClearBeautifiedText,
+  };
 }

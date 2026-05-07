@@ -1,10 +1,9 @@
 import { URLComposerConfig } from "../config";
 import { PageRenderer } from "../page-renderer";
-// import { SavedURL } from "../saved-url";
 
 export const Main = () => {
   return (
-    <main className="mt-14 px-16 min-h-[100svh]">
+    <main className="mt-6 px-16 min-h-[100svh]">
       <div className="mb-6">
         <h1 className="text-4xl font-bold mb-1 text-gray-950 dark:text-gray-50">
           URL Builder
@@ -19,9 +18,6 @@ export const Main = () => {
         </div>
         <div className="min-w-[calc(35%-theme(space.2))]">
           <URLComposerConfig />
-          {/* <div className="mt-4">
-            <SavedURL />
-          </div> */}
         </div>
       </div>
     </main>
