@@ -3,4 +3,5 @@ export type DecodeMeta = {
   path: string;
   depth: number;
   original: string;
+  originalValue: any;
 };

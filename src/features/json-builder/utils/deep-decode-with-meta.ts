@@ -15,6 +15,7 @@ export function deepDecodeWithMeta(
         path,
         depth,
         original: input,
+        originalValue: parsed,
       });
 
       return deepDecodeWithMeta(parsed, path, depth + 1, meta);
