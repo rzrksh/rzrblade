@@ -59,8 +59,7 @@ export const Home = () => {
             Everything you need. In one place.
           </div>
           <div className="text-center text-sm font-light text-gray-500">
-            Powerfull tools for modern developers. No signup, No Ads, No
-            nonsense
+            Powerfull tools for modern developers. No signup and No Ads
           </div>
           <div></div>
         </div>
